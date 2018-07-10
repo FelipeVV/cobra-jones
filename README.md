@@ -16,8 +16,12 @@ El juego está inpirado en las historias y películas de aventura,
 ## Estética
 Por razones de tiempo, el juego se hará en estilo "pixel art". La paleta de color tendrá muchos colores y tonos café y tierra.
 
+![](https://i.imgur.com/ohQxtvh.png)
+![](https://i.imgur.com/iXU70Kd.png)
+
 ## Jugador
 La protagonista del juego se llama Selena "Cobra" Jones. El personaje fue diseñado desde una hoja de diseño escrita hasta ya el dibujo final. El arte final incluye rotaciones y expresiones del personaje.
+
 
 ## Quienes Somos?
 Córdoba C. Johan 
