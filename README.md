@@ -1,6 +1,15 @@
 # cobra-jones
 Juego como Indiana Jones que no es Indiana Jones.
 
+## Quienes Somos?
+Córdoba C. Johan 
+
+Vega V. Felipe
+
+Estudiantes de Ciencias de la Computación e Informática en la Universidad de Costa Rica.
+
+Este juego se crea como proyecto de Programación 2 en C++
+
 ## Premisa
 El juego está inpirado en las historias y películas de aventura,  
 
@@ -22,13 +31,6 @@ Por razones de tiempo, el juego se hará en estilo "pixel art". La paleta de col
 ## Jugador
 La protagonista del juego se llama Selena "Cobra" Jones. El personaje fue diseñado desde una hoja de diseño escrita hasta ya el dibujo final. El arte final incluye rotaciones y expresiones del personaje.
 
-
-## Quienes Somos?
-Córdoba C. Johan 
-Vega V. Felipe
-
-Estudiantes de Ciencias de la Computación e Informática en la Universidad de Costa Rica.
-Este juego se crea como proyecto de Programación 2 en C++
 
 ## Primer Entregable
 1. programa debe cargar los niveles de forma correcta, añadiendo según el archivo de texto de la entrada las texturas correspondientes a cada elemento.
