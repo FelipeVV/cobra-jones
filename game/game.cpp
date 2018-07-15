@@ -1,5 +1,8 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QFile>
+
+#include <iostream>
 
 #include "game.h"
 
@@ -14,10 +17,23 @@ Game::~Game()
     delete this->view;
 }
 
+int Game::loadLevels(){
+    const char* const filename = ":/assets/levels.txt";
+    QFile file(filename);
+    if ( ! file.open(QIODevice::ReadOnly) )
+        return std::cerr << "Game: could not open " << filename << std::endl, 2;
+    loadLevels(file);
+    file.close();
+    return 0;
+}
+
+int loadLevels(QFile){
+
+}
+
 int Game::run()
 {
-    if(int loaded = this->loadLevels() )
-        return loaded;
+    loadLevels();
     // Init the random seed
     //qsrand(QTime::currentTime().msec());
 

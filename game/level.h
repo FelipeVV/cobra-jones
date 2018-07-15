@@ -2,10 +2,10 @@
 #define LEVEL_H
 
 
-class Level
+/*class Level
 {
 public:
     Level();
-};
+};*/
 
 #endif // LEVEL_H

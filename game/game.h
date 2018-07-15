@@ -7,7 +7,8 @@ class QGraphicsView;
 
 class Game: public QApplication
 {
-    Q_DISABLE_COPY(Game)
+    //Q_DISABLE_COPY(Game)
+    DISABLE_COPY_CLASS(Game);
 
   protected:
     // Manages graphic items. It is an invisible manager
@@ -23,6 +24,9 @@ class Game: public QApplication
     /// Call this method instead of exec()
     int run();
 
+  private:
+    /// Load level file
+    int loadLevels();
 };
 
 #endif // GAME_H
