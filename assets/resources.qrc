@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/assets">
         <file>levels.txt</file>
+        <file>Background.png</file>
+        <file>avatar.png</file>
     </qresource>
 </RCC>

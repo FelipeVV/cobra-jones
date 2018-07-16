@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         game.cpp \
-    level.cpp
+    level.cpp \
+    myrect.cpp
 
 HEADERS += \
         game.h \
-    level.h
+    level.h \
+    myrect.h
 
 FORMS += \
         game.ui
