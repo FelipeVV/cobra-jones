@@ -1,10 +1,12 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QTextStream>
 #include <QFile>
 
 #include <iostream>
 
 #include "game.h"
+#include "level.h"
 
 Game::Game(int &argc, char **argv, int flags)
     : QApplication(argc, argv, flags)
@@ -22,13 +24,31 @@ int Game::loadLevels(){
     QFile file(filename);
     if ( ! file.open(QIODevice::ReadOnly) )
         return std::cerr << "Game: could not open " << filename << std::endl, 2;
-    loadLevels(file);
+    //loadLevels(file);
+    //creating new level
+    int rows,cols;
+    char waste;
+    char actual;
+    int actualRow = 0, actualCol = 0;
+    QTextStream data(&file);
+    data>>rows;
+    data>>cols;
+    //std::cout<<rows<<cols<<std::endl;
+    Level levelOne(rows,cols);
+    data>>waste;data>>waste;// cambios de linea
+    while(!data.atEnd()){
+        data>>actual;
+        if(actual!='\n'){
+            levelOne.matrix[actualRow][actualRow]=actual;
+            //levelOne.setValue(actualRow,actualCol,actual);
+            actualCol++;
+        }else{
+            actualRow++;
+        }
+    }
+
     file.close();
     return 0;
-}
-
-int loadLevels(QFile){
-
 }
 
 int Game::run()

@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <QApplication>
+
 class QGraphicsScene;
 class QGraphicsView;
 
