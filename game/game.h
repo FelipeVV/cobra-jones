@@ -19,8 +19,8 @@ class Game: public QApplication
     QGraphicsScene* scene;
     /// A visible widget that renders the scene
     QGraphicsView* view;
-    double screenWidth = 592.0;
-    double screenHeight = 592.0;
+    double screenWidth = 800.0;
+    double screenHeight = 800.0;
     QVector<Level*> levels;
     QVector<Tile*> tiles;
 
@@ -35,7 +35,7 @@ class Game: public QApplication
   private:
     /// Load level file
     int loadLevels();
-    int displayLevel();
+    int displayLevel(int levelIndex);
 };
 
 #endif // GAME_H

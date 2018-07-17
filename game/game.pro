@@ -28,18 +28,19 @@ SOURCES += \
         game.cpp \
     level.cpp \
     Player.cpp \
-    mainwindow.cpp \
-    tile.cpp
+    tile.cpp \
+    mainwindow.cpp
 
 HEADERS += \
         game.h \
     level.h \
     Player.h \
-    mainwindow.h \
-    tile.h
+    tile.h \
+    mainwindow.h
 
 FORMS += \
-        game.ui
+        game.ui \
+    mainwindow.ui
 
 RESOURCES += \
     ../assets/resources.qrc

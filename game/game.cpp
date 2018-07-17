@@ -3,7 +3,7 @@
 #include <QTextStream>
 #include <QFile>
 #include <QGraphicsPixmapItem>
-
+#include <QDebug>
 #include <iostream>
 
 #include "game.h"
@@ -27,7 +27,7 @@ int Game::loadLevels()
     const char* const filename = ":/assets/levels.txt";
     QFile file(filename);
     if ( ! file.open(QIODevice::ReadOnly) )
-        return std::cerr << "Game: could not open " << filename << std::endl, 2;
+        return qDebug() << "Game: could not open " << filename << "\n", 2;
 
     //creating new level
     int rows,cols;
@@ -37,7 +37,6 @@ int Game::loadLevels()
     QTextStream data(&file);
     data>>rows;
     data>>cols;
-    //std::cout<<rows<<cols<<std::endl;
     Level *levelOne = new Level(rows,cols);
     data>>waste;data>>waste;// cambios de linea
     while(!data.atEnd())
@@ -52,7 +51,7 @@ int Game::loadLevels()
             actualRow++;
             actualCol=0;
         }
-        std::cout << actual;
+        qDebug() << actual;
     }
     levels.append(levelOne);
     file.close();
@@ -63,9 +62,11 @@ int Game::displayLevel(int levelIndex)
 {
     double rows = static_cast<double>(levels[levelIndex]->rows);
     double cols = static_cast<double>(levels[levelIndex]->cols);
-    double imgSide = 32.0;
+//    double imgSide = 32.0;
     double tileWidth = screenWidth / cols;
     double tileHeight = screenHeight / rows;
+
+    qDebug() << rows << "\n" << cols << "\n" << tileWidth << "\n" << tileHeight << "\n";
 
     for(int row = 0; row < levels[levelIndex]->rows; ++row)
     {
@@ -73,11 +74,13 @@ int Game::displayLevel(int levelIndex)
         {
             double posX = tileWidth * static_cast<double>(col);
             double posY = tileHeight * static_cast<double>(row);
+            qDebug() << posX << posY << "\n";
 
             QGraphicsRectItem *rect = new QGraphicsRectItem();
-            this->rect->setRect(posX, posY, tileWidth, tileHeight);
-            this->scene->addItem(this->rect);
-
+            rect->setRect(posX, posY, tileWidth, tileHeight);
+            qDebug() << "rect created";
+            this->scene->addItem(rect);
+            qDebug() << "rect added to scene";
             //tiles.append(currentTile);
         }
     }
@@ -87,11 +90,11 @@ int Game::displayLevel(int levelIndex)
 int Game::run()
 {
     loadLevels();
-    displayLevel(0);
 
     // An invisible object that manages all the items
     this->scene = new QGraphicsScene();
-    scene->setSceneRect(0, 0, screenWidth, screenHeight);
+    this->scene->setSceneRect(0, 0, screenWidth, screenHeight);
+    displayLevel(0);
 
     //add the player caracter
     // Create, put size and add rect to the scene
