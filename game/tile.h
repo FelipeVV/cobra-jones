@@ -3,7 +3,7 @@
 
 #include <QGraphicsPixmapItem>
 
-class Tile : public QGraphicsPixmapItem
+class Tile
 {
   protected:
     double x;
