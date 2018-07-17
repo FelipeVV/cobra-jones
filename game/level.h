@@ -6,6 +6,7 @@
 class Level
 {
     friend class Game;
+    Q_DISABLE_COPY(Level);
   private:
     int rows;
     int cols;
@@ -14,6 +15,7 @@ class Level
 
   public:
     Level(int cols, int rows);
+    ~Level();
     void setValue(int row, int col, char value);
 };
 

@@ -250,7 +250,9 @@ release/main.o: ../game/main.cpp ../game/game.h \
 		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtGui/qtouchdevice.h \
 		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtGui/qinputmethod.h
+		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtGui/qinputmethod.h \
+		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtCore/QVector \
+		../game/Level.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\game\main.cpp
 
 release/game.o: ../game/game.cpp C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtWidgets/QGraphicsView \
@@ -377,6 +379,8 @@ release/game.o: ../game/game.cpp C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtWidg
 		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtWidgets/qdesktopwidget.h \
 		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtGui/qguiapplication.h \
 		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtGui/qinputmethod.h \
+		C:/Qt/Qt5.11.1/5.11.1/mingw53_32/include/QtCore/QVector \
+		../game/Level.h \
 		../game/level.h \
 		../game/Player.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\game.o ..\game\game.cpp

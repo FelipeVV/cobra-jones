@@ -37,23 +37,23 @@ int Game::loadLevels()
     data>>rows;
     data>>cols;
     //std::cout<<rows<<cols<<std::endl;
-    Level levelOne(rows,cols);
+    Level *levelOne = new Level(rows,cols);
     data>>waste;data>>waste;// cambios de linea
     while(!data.atEnd())
     {
         data>>actual;
         if(actual!='\n')
         {
-            levelOne.matrix[actualRow][actualCol]=actual;
+            levelOne->matrix[actualRow][actualCol]=actual;
             actualCol++;
         }else
         {
             actualRow++;
             actualCol=0;
         }
-        std::cout<<actual;
+        std::cout << actual;
     }
-
+    levels.append(levelOne);
     file.close();
     return 0;
 }
@@ -61,11 +61,11 @@ int Game::loadLevels()
 int Game::run()
 {
     loadLevels();
-    // Init the random seed
-    //qsrand(QTime::currentTime().msec());
+    //displayLevel();
 
     // An invisible object that manages all the items
     this->scene = new QGraphicsScene();
+    scene->setSceneRect(0, 0, screenWidth, screenHeight);
 
     //add the player caracter
     // Create, put size and add rect to the scene
@@ -78,14 +78,15 @@ int Game::run()
     playerCharacter->setFocus();
     // A visible rectangle of the scene
     this->view = new QGraphicsView(this->scene);//fatha as argument
+    view->setFixedSize(screenWidth, screenHeight);
   //#if ! defined(Q_OS_ANDROID) && ! defined(Q_OS_IOS)
-    this->view->resize(800, 600);
+    //this->view->resize(800, 600);
   //#endif
     //
     //  where factorX = 1.0, no changes
     // factor es el que quiero entre el que tengo
     // boundingBox() da el que tengo  con .width
-    //transforn object->setTransform(QTransform().scale(factorX,factorY));
+    // transforn object->setTransform(QTransform().scale(factorX,factorY));
     //
     //
     // Set a black color background or add an image as a background

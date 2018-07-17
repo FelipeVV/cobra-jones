@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <QApplication>
+#include <QVector>
+#include "Level.h"
 
 class QGraphicsScene;
 class QGraphicsView;
@@ -16,6 +18,9 @@ class Game: public QApplication
     QGraphicsScene* scene;
     /// A visible widget that renders the scene
     QGraphicsView* view;
+    double screenWidth = 592.0;
+    double screenHeight = 592.0;
+    QVector<Level*> levels;
 
   public:
     /// Constructor
