@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <QDebug>
 #include <QKeyEvent>
+//#include <QSoundEffect>
 
 /*
 void Player::Player()
@@ -33,4 +34,27 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         setPos(x(), y() + walk_speed);
     }
+    if(event->key() == Qt::Key_Space)
+    {
+
+    }
 }
+
+/*void Player::detectCollisions()
+{
+    // Traverse all graphic items that are colliding with this
+    const QList<QGraphicsItem*>& items = collidingItems();
+    //for ( QGraphicsItem* item : items )
+    {
+        // If a graphic item is an obstacle remove it from scene
+        if ( Obstacle* obstacle = dynamic_cast<Obstacle*>(item) )
+        {
+            // Play the collision sound
+            //this->collisionSound->play();
+
+            // Stop current move animation and move in another direction
+            //this->moveAnimation->stop();
+            //this->move();
+        }
+    }
+}*/

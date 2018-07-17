@@ -3,12 +3,19 @@
 
 #include <QGraphicsPixmapItem>
 
+//class QSoundEffect;
+
 class Player: public QGraphicsPixmapItem
 {
-
   public:
-    //void Player();
+    /// Called if this object has the focus and a key is pressed by user
     void keyPressEvent(QKeyEvent* event);
+    /// ???
+    void drill();
+
+  protected slots:
+    /// Detect and react to collisions with other elements
+    void detectCollisions();
 };
 
 #endif // PLAYER_H
