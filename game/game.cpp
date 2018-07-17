@@ -8,7 +8,7 @@
 
 #include "game.h"
 #include "level.h"
-#include "MyRect.h"
+#include "Player.h"
 
 Game::Game(int &argc, char **argv, int flags)
     : QApplication(argc, argv, flags)
@@ -69,7 +69,7 @@ int Game::run()
 
     //add the player caracter
     // Create, put size and add rect to the scene
-    MyRect* playerCharacter = new MyRect();
+    Player* playerCharacter = new Player();
     //rect->setRect(0, 0, 75, 75);
     playerCharacter->setPixmap(QPixmap(":/assets/avatar.png"));
     scene->addItem(playerCharacter);

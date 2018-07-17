@@ -27,12 +27,12 @@ SOURCES += \
         main.cpp \
         game.cpp \
     level.cpp \
-    myrect.cpp
+    Player.cpp
 
 HEADERS += \
         game.h \
     level.h \
-    myrect.h
+    Player.h
 
 FORMS += \
         game.ui
