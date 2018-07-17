@@ -40,6 +40,11 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
 }
 
+void Player::setSkin(int skin)
+{
+    if(skin==1)
+        setPixmap(QPixmap(":/assets/avatar.png"));
+}
 /*void Player::detectCollisions()
 {
     // Traverse all graphic items that are colliding with this

@@ -12,6 +12,7 @@ class Player: public QGraphicsPixmapItem
     void keyPressEvent(QKeyEvent* event);
     /// ???
     void drill();
+    void setSkin(int skin);
 
   protected slots:
     /// Detect and react to collisions with other elements

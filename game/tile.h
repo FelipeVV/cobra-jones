@@ -12,6 +12,8 @@ class Tile : public QGraphicsPixmapItem
   public:
     void setType(char ch);
     char getType();
+  private:
+    void setArt(char tileType);
 };
 
 #endif // TILE_H

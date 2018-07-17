@@ -29,16 +29,14 @@ int Game::loadLevels()
     if ( ! file.open(QIODevice::ReadOnly) )
         return qDebug() << "Game: could not open " << filename << "\n", 2;
 
-    //creating new level
-    int rows,cols;
-    char waste;
-    char actual;
-    int actualRow = 0, actualCol = 0;
+    ///create new level
+    int rows,cols,actualRow = 0, actualCol = 0;
+    char waste,actual;
     QTextStream data(&file);
     data>>rows;
     data>>cols;
-    Level *levelOne = new Level(rows,cols);
-    data>>waste;data>>waste;// cambios de linea
+    Level *levelOne = new Level(rows,cols);//temp name
+    data>>waste;data>>waste;// waste
     while(!data.atEnd())
     {
         data>>actual;
@@ -79,10 +77,6 @@ int Game::displayLevel(int levelIndex)
 
             Tile *currentTile = new Tile();
             currentTile->setType(levels[levelIndex]->matrix[row][col]);
-            //currentTile->setRect(posX, posY, tileWidth, tileHeight);
-            //assign image
-            currentTile->setPixmap(QPixmap(":/assets/floor.png"));
-            //change x and y
             currentTile->setPos( QPoint(posX, posY) );
             //transform
             currentTile->setScale( growthFactor );
@@ -90,7 +84,7 @@ int Game::displayLevel(int levelIndex)
             qDebug() << "rect created";
             this->scene->addItem(currentTile);
             qDebug() << "rect added to scene\n";
-            //tiles.append(currentTile);
+            tiles.append(currentTile);
         }
     }
     return 0;
@@ -103,58 +97,37 @@ int Game::run()
     // An invisible object that manages all the items
     this->scene = new QGraphicsScene();
     this->scene->setSceneRect(0, 0, screenWidth, screenHeight);
-    displayLevel(0);
+    displayLevel(0);//will charge selected level
 
     //add the player caracter
     // Create, put size and add rect to the scene
     Player* playerCharacter = new Player();
-    //rect->setRect(0, 0, 75, 75);
-    playerCharacter->setPixmap(QPixmap(":/assets/avatar.png"));
+    playerCharacter->setSkin(1);
     scene->addItem(playerCharacter);
-    // make rect focusable
+
+    // make player focusable
     playerCharacter->setFlag(QGraphicsItem::ItemIsFocusable);
     playerCharacter->setFocus();
+
     // A visible rectangle of the scene
     this->view = new QGraphicsView(this->scene);//fatha as argument
     view->setFixedSize(screenWidth, screenHeight);
-  //#if ! defined(Q_OS_ANDROID) && ! defined(Q_OS_IOS)
-    //this->view->resize(800, 600);
-  //#endif
+//  #if ! defined(Q_OS_ANDROID) && ! defined(Q_OS_IOS)
+//  this->view->resize(800, 600);
+//  #endif
     //
-    //  where factorX = 1.0, no changes
-    // factor es el que quiero entre el que tengo
     // boundingBox() da el que tengo  con .width
     // transforn object->setTransform(QTransform().scale(factorX,factorY));
-    //
-    //
+
     // Set a black color background or add an image as a background
     this->view->setBackgroundBrush(QBrush(Qt::darkCyan, Qt::SolidPattern));
-    //scene->addItem( new QGraphicsPixmapItem(QPixmap(":/assets/Background.png")) );
-//    QPixmap pim(":/Background.png");
-//    view->setBackgroundBrush(pim);
 
     // The scene has infinite size, but we want it has the same size than the view
-    // This stops the weird behavior of the autoscroll feature of the view being smaller than the
-    // scene, because the scene auto-increases when objects are moved
     this->scene->setSceneRect( this->view->rect() );
 
-    // Disable scrollbars because they are not longer needed
+    // Disable scrollbars
     this->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    // Load the graphic resources
-    //this->svgRenderer = new QSvgRenderer(QString("://assets.svg"), this);
-
-    // Create the player control
-    /*this->player = new Player();
-    this->player->setSharedRenderer(svgRenderer);
-    this->scene->addItem(this->player);
-    this->player->setInitialPos();*/
-
-    // Launch an enemy periodically
-    /*QTimer* timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &Game::launchObstacle);
-    timer->start(1500);*/
 
     // Play background music
     //playBackgroundMusic("FunkGameLoop32m.mp3");
