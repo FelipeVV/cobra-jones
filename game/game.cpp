@@ -61,19 +61,24 @@ int Game::loadLevels()
 
 int Game::displayLevel(int levelIndex)
 {
+    double rows = static_cast<double>(levels[levelIndex]->rows);
+    double cols = static_cast<double>(levels[levelIndex]->cols);
+    double imgSide = 32.0;
+    double tileWidth = screenWidth / cols;
+    double tileHeight = screenHeight / rows;
+
     for(int row = 0; row < levels[levelIndex]->rows; ++row)
     {
         for(int col = 0; col < levels[levelIndex]->cols; ++col)
         {
-            Tile *currentTile = new Tile(static_cast<double>(col) * (screenWidth/static_cast<double>(levels[levelIndex]->cols)),
-                                         static_cast<double>(row) * (screenHeight/static_cast<double>(levels[levelIndex]->rows)),
-                                         levels[levelIndex][row][col]
-                                         );
-            // transforn object->setTransform(QTransform().scale(factorX,factorY));
-            double factorX = screenWidth / (levels[levelIndex]->cols) * ;
-            double factorY = ;
-            currentTile->setTransform(QTransform().scale(factorX, factorY));
-            tiles.append(currentTile);
+            double posX = tileWidth * static_cast<double>(col);
+            double posY = tileHeight * static_cast<double>(row);
+
+            QGraphicsRectItem *rect = new QGraphicsRectItem();
+            this->rect->setRect(posX, posY, tileWidth, tileHeight);
+            this->scene->addItem(this->rect);
+
+            //tiles.append(currentTile);
         }
     }
     return 0;
