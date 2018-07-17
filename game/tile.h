@@ -2,15 +2,16 @@
 #define TILE_H
 
 #include <QGraphicsPixmapItem>
+#include <QGraphicsRectItem>
 
-class Tile
+class Tile : public QGraphicsPixmapItem
 {
   protected:
-    double x;
-    double y;
     char type;
+
   public:
-    Tile(double x, double y, char type);
+    void setType(char ch);
+    char getType();
 };
 
 #endif // TILE_H

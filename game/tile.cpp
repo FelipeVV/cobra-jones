@@ -1,8 +1,12 @@
 #include "tile.h"
 
-Tile::Tile(double x, double y, char type)
-    : x{x}
-    , y{y}
-    , type{type}
+
+void Tile::setType(char ch)
 {
+    this->type = ch;
+}
+
+char Tile::getType()
+{
+    return this->type;
 }

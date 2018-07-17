@@ -33,21 +33,22 @@ La protagonista del juego se llama Selena "Cobra" Jones. El personaje fue diseñ
 
 
 ## Primer Entregable
+
 1. El jugador es capaz de moverse en el mapa
+
 2. programa debe cargar los niveles de forma correcta, añadiendo según el archivo de texto de la entrada las texturas correspondientes a cada elemento.
 
-3. jugador será capaz de seleccionar la casilla que supone es la solución mediante doble tap o doble click para perforar sobre el nivel:
+3. El jugador tiene un boton diseñado para "taladrar" el suelo.
+
+4. El jugador es capaz de seleccionar niveles en un tipo de menu
   
 ## Segundo Entregable
 
 1. Si acierta una moneda se hace gigante y llena el campo de visión del jugador y se muestra su score.
-2. Si falla un rectángulo se hace gigante y de igual forma llena el campo de visión pero esta vez se muestran las opciones de repetir o salir.
 
-3. El jugador tiene un boton diseñado para "taladrar" el suelo. 
+2. Si falla un rectángulo se hace gigante y de igual forma llena el campo de visión pero esta vez se muestran las opciones de repetir o salir. 
 
-4. Hay más de un nivel
-
-5. El jugador es capaz de seleccionar niveles en un tipo de menu
+3. Hay más de un nivel
 
 
 El juego se basa en el problema del primer examen, que trata de un juego de exploración por niveles.

@@ -62,9 +62,10 @@ int Game::displayLevel(int levelIndex)
 {
     double rows = static_cast<double>(levels[levelIndex]->rows);
     double cols = static_cast<double>(levels[levelIndex]->cols);
-//    double imgSide = 32.0;
+    double imgSide = 32.0;
     double tileWidth = screenWidth / cols;
     double tileHeight = screenHeight / rows;
+    qreal growthFactor = tileWidth / imgSide;
 
     qDebug() << rows << "\n" << cols << "\n" << tileWidth << "\n" << tileHeight << "\n";
 
@@ -72,15 +73,23 @@ int Game::displayLevel(int levelIndex)
     {
         for(int col = 0; col < levels[levelIndex]->cols; ++col)
         {
-            double posX = tileWidth * static_cast<double>(col);
-            double posY = tileHeight * static_cast<double>(row);
-            qDebug() << posX << posY << "\n";
+            qreal posX = tileWidth * static_cast<double>(col);
+            qreal posY = tileHeight * static_cast<double>(row);
+            qDebug() << posX << posY;
 
-            QGraphicsRectItem *rect = new QGraphicsRectItem();
-            rect->setRect(posX, posY, tileWidth, tileHeight);
+            Tile *currentTile = new Tile();
+            currentTile->setType(levels[levelIndex]->matrix[row][col]);
+            //currentTile->setRect(posX, posY, tileWidth, tileHeight);
+            //assign image
+            currentTile->setPixmap(QPixmap(":/assets/floor.png"));
+            //change x and y
+            currentTile->setPos( QPoint(posX, posY) );
+            //transform
+            currentTile->setScale( growthFactor );
+
             qDebug() << "rect created";
-            this->scene->addItem(rect);
-            qDebug() << "rect added to scene";
+            this->scene->addItem(currentTile);
+            qDebug() << "rect added to scene\n";
             //tiles.append(currentTile);
         }
     }
