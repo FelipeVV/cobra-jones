@@ -61,7 +61,7 @@ int Game::loadLevels()
 int Game::run()
 {
     loadLevels();
-    //displayLevel();
+    displayLevel();
 
     // An invisible object that manages all the items
     this->scene = new QGraphicsScene();
