@@ -1,15 +1,15 @@
-#include "MyRect.h"
+#include "Player.h"
 #include <QDebug>
 #include <QKeyEvent>
 
 /*
-void MyRect::MyRect()
+void Player::Player()
 {
    setRect(0, 0, 100, 100);
 }
 */
 
-void MyRect::keyPressEvent(QKeyEvent *event)
+void Player::keyPressEvent(QKeyEvent *event)
 {
 
     // React to input
