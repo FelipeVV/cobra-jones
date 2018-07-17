@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QVector>
 #include "Level.h"
+#include "tile.h"
 
 class QGraphicsScene;
 class QGraphicsView;
@@ -21,6 +22,7 @@ class Game: public QApplication
     double screenWidth = 592.0;
     double screenHeight = 592.0;
     QVector<Level*> levels;
+    QVector<Tile*> tiles;
 
   public:
     /// Constructor
@@ -33,6 +35,7 @@ class Game: public QApplication
   private:
     /// Load level file
     int loadLevels();
+    int displayLevel();
 };
 
 #endif // GAME_H

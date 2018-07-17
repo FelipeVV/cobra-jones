@@ -16,6 +16,7 @@ Level::~Level()
     delete this->matrix;
 }
 
-void Level::setValue(int row,int col,char value){
+void Level::setValue(int row,int col,char value)
+{
     matrix[row][col]=value;
 }

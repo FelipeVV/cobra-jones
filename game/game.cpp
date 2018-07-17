@@ -9,6 +9,7 @@
 #include "game.h"
 #include "level.h"
 #include "Player.h"
+#include "tile.h"
 
 Game::Game(int &argc, char **argv, int flags)
     : QApplication(argc, argv, flags)
@@ -58,10 +59,30 @@ int Game::loadLevels()
     return 0;
 }
 
+int Game::displayLevel(int levelIndex)
+{
+    for(int row = 0; row < levels[levelIndex]->rows; ++row)
+    {
+        for(int col = 0; col < levels[levelIndex]->cols; ++col)
+        {
+            Tile *currentTile = new Tile(static_cast<double>(col) * (screenWidth/static_cast<double>(levels[levelIndex]->cols)),
+                                         static_cast<double>(row) * (screenHeight/static_cast<double>(levels[levelIndex]->rows)),
+                                         levels[levelIndex][row][col]
+                                         );
+            // transforn object->setTransform(QTransform().scale(factorX,factorY));
+            double factorX = screenWidth / (levels[levelIndex]->cols) * ;
+            double factorY = ;
+            currentTile->setTransform(QTransform().scale(factorX, factorY));
+            tiles.append(currentTile);
+        }
+    }
+    return 0;
+}
+
 int Game::run()
 {
     loadLevels();
-    displayLevel();
+    displayLevel(0);
 
     // An invisible object that manages all the items
     this->scene = new QGraphicsScene();

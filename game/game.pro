@@ -28,13 +28,15 @@ SOURCES += \
         game.cpp \
     level.cpp \
     Player.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tile.cpp
 
 HEADERS += \
         game.h \
     level.h \
     Player.h \
-    mainwindow.h
+    mainwindow.h \
+    tile.h
 
 FORMS += \
         game.ui
