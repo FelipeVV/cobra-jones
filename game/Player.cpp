@@ -1,14 +1,18 @@
 #include "Player.h"
 #include <QDebug>
 #include <QKeyEvent>
-//#include <QSoundEffect>
+#include <QSoundEffect>
+#include <QApplication>
 
-/*
-void Player::Player()
+
+Player::Player()
 {
-   setRect(0, 0, 100, 100);
+    // Pre-load the collision sound
+    walkingSound = new QSoundEffect(qApp);
+    walkingSound->setSource(QUrl("qrc:/assets/sfx_movement_footsteps1b.wav"));
+    walkingSound->setVolume(0.98f);
 }
-*/
+
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
@@ -18,6 +22,8 @@ void Player::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_Left)
     {
         setPos(x() - walk_speed, y());
+        walkingSound->play();
+        //walkingSound->
     }
 
     if(event->key() == Qt::Key_Right)

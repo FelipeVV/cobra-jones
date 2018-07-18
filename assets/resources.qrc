@@ -9,5 +9,6 @@
         <file>tileBroken.png</file>
         <file>tileNormal.png</file>
         <file>tileSpecial.png</file>
+        <file>sfx_movement_footsteps1b.wav</file>
     </qresource>
 </RCC>
