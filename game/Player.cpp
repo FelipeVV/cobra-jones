@@ -1,9 +1,10 @@
-#include "Player.h"
 #include <QDebug>
 #include <QKeyEvent>
 #include <QSoundEffect>
 #include <QApplication>
 
+#include "Player.h"
+#include <tile.h>
 
 Player::Player()
 {
@@ -23,6 +24,7 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         setPos(x() - walk_speed, y());
         //walkingSound->play();
+
     }
 
     if(event->key() == Qt::Key_Right)
@@ -43,6 +45,15 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         this->drill();
     }
+    const QList<QGraphicsItem*>& items = collidingItems();
+    for ( QGraphicsItem* item : items )
+    {
+        if (Tile* actual =dynamic_cast<Tile*>(item) )
+        {
+            if(actual->getType()=='#')
+                qDebug() << "lvl failed\n";
+        }
+    }
 }
 
 void Player::setSkin(int skin)
@@ -51,7 +62,7 @@ void Player::setSkin(int skin)
         setPixmap(QPixmap(":/assets/dawn sprite.png"));
 }
 
-#include <tile.h>
+
 void Player::drill(){
     // Traverse all graphic items that are colliding with this
     const QList<QGraphicsItem*>& items = collidingItems();
@@ -63,8 +74,6 @@ void Player::drill(){
             // Play the collision sound
             if(actual->getType()=='O')
                 qDebug() << "lvl passed \n";
-            if(actual->getType()=='#')
-                qDebug() << "lvl failed\n";
             if(actual->getType()=='-')
                 qDebug() << "lvl failed\n";
 
