@@ -65,6 +65,8 @@ void Player::drill(){
                 qDebug() << "lvl passed \n";
             if(actual->getType()=='#')
                 qDebug() << "lvl failed\n";
+            if(actual->getType()=='-')
+                qDebug() << "lvl failed\n";
 
         }
     }
