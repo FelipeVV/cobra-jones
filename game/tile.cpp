@@ -16,14 +16,14 @@ void Tile::setArt(char tileType)
 {
     if (tileType=='-')
     {
-        this->setPixmap(QPixmap(":/assets/floor.png"));
+        this->setPixmap(QPixmap(":/assets/tileNormal.png"));
     }
     if (tileType=='#')
     {
-        this->setPixmap(QPixmap(":/assets/floor_dark.png"));
+        this->setPixmap(QPixmap(":/assets/tileBroken.png"));
     }
     if (tileType=='O')
     {
-        this->setPixmap(QPixmap(":/assets/floor.png"));
+        this->setPixmap(QPixmap(":/assets/tileNormal.png"));
     }
 }

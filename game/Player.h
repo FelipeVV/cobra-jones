@@ -14,9 +14,6 @@ class Player: public QGraphicsPixmapItem
     void drill();
     void setSkin(int skin);
 
-  protected slots:
-    /// Detect and react to collisions with other elements
-    void detectCollisions();
 };
 
 #endif // PLAYER_H

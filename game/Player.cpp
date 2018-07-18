@@ -36,30 +36,35 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
     if(event->key() == Qt::Key_Space)
     {
-
+        this->drill();
     }
 }
 
 void Player::setSkin(int skin)
 {
     if(skin==1)
-        setPixmap(QPixmap(":/assets/avatar.png"));
+        setPixmap(QPixmap(":/assets/dawn sprite.png"));
 }
-/*void Player::detectCollisions()
-{
+
+#include <tile.h>
+void Player::drill(){
     // Traverse all graphic items that are colliding with this
     const QList<QGraphicsItem*>& items = collidingItems();
-    //for ( QGraphicsItem* item : items )
+    for ( QGraphicsItem* item : items )
     {
-        // If a graphic item is an obstacle remove it from scene
-        if ( Obstacle* obstacle = dynamic_cast<Obstacle*>(item) )
+        // If a graphic item is an
+        if (Tile* actual =dynamic_cast<Tile*>(item) )
         {
             // Play the collision sound
             //this->collisionSound->play();
+            if(actual->getType()=='O')
+                qDebug() << "lvl passed \n";
+            if(actual->getType()=='O')
+                qDebug() << "lvl failed\n";
 
             // Stop current move animation and move in another direction
             //this->moveAnimation->stop();
             //this->move();
         }
     }
-}*/
+}

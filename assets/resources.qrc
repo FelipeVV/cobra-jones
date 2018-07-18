@@ -5,5 +5,9 @@
         <file>avatar.png</file>
         <file>floor.png</file>
         <file>floor_dark.png</file>
+        <file>dawn sprite.png</file>
+        <file>tileBroken.png</file>
+        <file>tileNormal.png</file>
+        <file>tileSpecial.png</file>
     </qresource>
 </RCC>
