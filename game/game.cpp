@@ -24,7 +24,7 @@ Game::~Game()
 
 int Game::loadLevels()
 {
-    const char* const filename = ":/assets/levels.txt";
+    const char* const filename = ":/assets/level02.txt";
     QFile file(filename);
     if ( ! file.open(QIODevice::ReadOnly) )
         return qDebug() << "Game: could not open " << filename << "\n", 2;
@@ -116,7 +116,7 @@ int Game::run()
     this->view = new QGraphicsView(this->scene);//fatha as argument
     view->setFixedSize(screenWidth, screenHeight);
 
-    // Set a black color background or add an image as a background
+    // Set a color background
     this->view->setBackgroundBrush(QBrush(Qt::darkCyan, Qt::SolidPattern));
 
     // The scene has infinite size, but we want it has the same size than the view
@@ -125,9 +125,6 @@ int Game::run()
     // Disable scrollbars because they are not longer needed
     this->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    // Play background music
-    //playBackgroundMusic("FunkGameLoop32m.mp3");
 
     // Show the view and enter in application's event loop
     this->view->show();

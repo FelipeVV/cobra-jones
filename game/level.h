@@ -10,7 +10,6 @@ class Level
   private:
     int rows;
     int cols;
-    //std::vector<std::vector<char>> matrix;
     char ** matrix;
 
   public:

@@ -22,8 +22,7 @@ void Player::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_Left)
     {
         setPos(x() - walk_speed, y());
-        walkingSound->play();
-        //walkingSound->
+        //walkingSound->play();
     }
 
     if(event->key() == Qt::Key_Right)
@@ -62,15 +61,11 @@ void Player::drill(){
         if (Tile* actual =dynamic_cast<Tile*>(item) )
         {
             // Play the collision sound
-            //this->collisionSound->play();
             if(actual->getType()=='O')
                 qDebug() << "lvl passed \n";
-            if(actual->getType()=='O')
+            if(actual->getType()=='#')
                 qDebug() << "lvl failed\n";
 
-            // Stop current move animation and move in another direction
-            //this->moveAnimation->stop();
-            //this->move();
         }
     }
 }
