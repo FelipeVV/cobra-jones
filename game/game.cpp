@@ -1,13 +1,16 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
-#include <QTextStream>
 #include <QFile>
 #include <QGraphicsPixmapItem>
 #include <QDebug>
 #include <iostream>
 
 #include "game.h"
+#include "mainwindow.h"
 #include "level.h"
+
+
+//borrar
 #include "Player.h"
 #include "tile.h"
 
@@ -18,19 +21,28 @@ Game::Game(int &argc, char **argv, int flags)
 
 Game::~Game()
 {
-    delete this->scene;
-    delete this->view;
+    //delete this->scene;
+    //delete this->view;
 }
 
-int Game::loadLevels()
+int Game::loadLevels(const int& number)
 {
+    // temporal
     const char* const filename = ":/assets/level02.txt";
     QFile file(filename);
     if ( ! file.open(QIODevice::ReadOnly) )
         return qDebug() << "Game: could not open " << filename << "\n", 2;
 
+    Level* level = new Level(file);
+    if(level)
+        levels.push_back(level);
+    file.close();
+    return 0;
+
+
+
     //creating new level
-    int rows,cols;
+    /*int rows,cols;
     char waste;
     char actual;
     int actualRow = 0, actualCol = 0;
@@ -52,15 +64,15 @@ int Game::loadLevels()
             actualCol=0;
         }
         qDebug() << actual;
-    }
-    levels.append(levelOne);
-    file.close();
-    return 0;
+    }*/
+    //levels.append(levelOne);
+    //file.close();
+    //return 0;
 }
 
 int Game::displayLevel(int levelIndex)
 {
-    double rows = static_cast<double>(levels[levelIndex]->rows);
+    /*double rows = static_cast<double>(levels[levelIndex]->rows);
     double cols = static_cast<double>(levels[levelIndex]->cols);
     double imgSide = 32.0;
     double tileWidth = screenWidth / cols;
@@ -89,13 +101,13 @@ int Game::displayLevel(int levelIndex)
             qDebug() << "rect added to scene\n";
             //tiles.append(currentTile);
         }
-    }
+    }*/
     return 0;
 }
 
 int Game::run()
 {
-    loadLevels();
+    /*loadLevels();
     //MainWindow.run();
     
     // An invisible object that manages all the items
@@ -128,5 +140,11 @@ int Game::run()
 
     // Show the view and enter in application's event loop
     this->view->show();
+    */
+    if( int result = loadLevels(1))//numero de niveles
+        return result;
+
+    this->mainWindow = new MainWindow(this->levels);
+    mainWindow->show();`
     return exec();
 }

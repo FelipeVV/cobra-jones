@@ -12,6 +12,12 @@ char Tile::getType()
     return this->type;
 }
 
+void Tile::growUp()
+{
+    //qreal growFactor = this->
+    //this->setScale();
+}
+
 void Tile::setArt(char tileType)
 {
     if (tileType=='-')

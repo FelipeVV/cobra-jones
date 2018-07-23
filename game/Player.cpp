@@ -50,8 +50,12 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         if (Tile* actual =dynamic_cast<Tile*>(item) )
         {
-            if(actual->getType()=='#')
+            if(actual->getType()=='#'){
+                //actual->growUp();
+                //qreal growFactor =
                 qDebug() << "lvl failed\n";
+                //actual->setScale( growthFactor );*/
+            }
         }
     }
 }

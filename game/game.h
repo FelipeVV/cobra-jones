@@ -3,30 +3,39 @@
 
 #include <QApplication>
 #include <QVector>
+
+//borrar
 #include "Level.h"
 #include "tile.h"
-
 class QGraphicsScene;
 class QGraphicsView;
 
+
+class MainWindow;
+class Level;
+class QFile;
+
 class Game: public QApplication
 {
-    //Q_DISABLE_COPY(Game)
     DISABLE_COPY_CLASS(Game);
+  private:
+    QVector<Level*> levels;
+    MainWindow* mainWindow = nullptr;
 
-  protected:
+  /*protected:
     // Manages graphic items. It is an invisible manager
     QGraphicsScene* scene;
     /// A visible widget that renders the scene
     QGraphicsView* view;
     double screenWidth = 800.0;
     double screenHeight = 800.0;
-    QVector<Level*> levels;
-    QVector<Tile*> tiles;
 
+    QVector<Tile*> tiles;
+    */
   public:
     /// Constructor
     Game(int &argc, char **argv, int flags = ApplicationFlags);
+    //Game(int& argc, char **argv);
     /// Destructor
     ~Game();
     /// Call this method instead of exec()
@@ -34,7 +43,7 @@ class Game: public QApplication
 
   private:
     /// Load level file
-    int loadLevels();
+    int loadLevels(const int& number);
     int displayLevel(int levelIndex);
 };
 

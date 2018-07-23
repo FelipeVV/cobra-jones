@@ -29,18 +29,19 @@ SOURCES += \
     level.cpp \
     Player.cpp \
     tile.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    GameMenuView.cpp
 
 HEADERS += \
         game.h \
     level.h \
     Player.h \
     tile.h \
-    mainwindow.h
+    mainwindow.h \
+    GameMenuView.h
 
 FORMS += \
-        game.ui \
-    mainwindow.ui
+    GameMenuView.ui
 
 RESOURCES += \
     ../assets/resources.qrc

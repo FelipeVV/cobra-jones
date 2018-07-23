@@ -2,21 +2,31 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVector>
 
-namespace Ui {
-class MainWindow;
-}
+class Level;
+
+//namespace Ui {
+//class MainWindow;
+//}
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    Q_DISABLE_COPY(MainWindow)
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+  private:
+    const QVector<Level*>& levels;
 
-private:
-    Ui::MainWindow *ui;
+  public:
+    explicit MainWindow(const QVector<Level*>& levels,QWidget* parent = nullptr);
+    virtual ~MainWindow();
+
+  //private:
+   // Ui::MainWindow *ui;
+  protected:
+    void buildInterface();
+    void showGameMenu();
 };
 
 #endif // MAINWINDOW_H
