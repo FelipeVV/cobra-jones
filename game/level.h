@@ -1,22 +1,27 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include <vector>
+#include <QChar>
 
-
+class QFile;
 class Level
 {
-    friend class Game;
-    Q_DISABLE_COPY(Level);
+    //friend class Game;
+    //Q_DISABLE_COPY(Level);
+    //deshabilitar copias
   private:
     int rows;
     int cols;
-    //std::vector<std::vector<char>> matrix;
-    char ** matrix;
+    QChar ** matrix;
 
   public:
-    Level(int cols, int rows);
+    Level(QFile& file);
     ~Level();
-    void setValue(int row, int col, char value);
+    QChar getChar(int row,int col);
+
+  private:
+    void loadMatrix(QFile& file);
+    void createMatrix();
 };
 
 #endif // LEVEL_H

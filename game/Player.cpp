@@ -1,14 +1,19 @@
-#include "Player.h"
 #include <QDebug>
 #include <QKeyEvent>
-//#include <QSoundEffect>
+#include <QSoundEffect>
+#include <QApplication>
 
-/*
-void Player::Player()
+#include "Player.h"
+#include <tile.h>
+
+Player::Player()
 {
-   setRect(0, 0, 100, 100);
+    // Pre-load the collision sound
+    walkingSound = new QSoundEffect(qApp);
+    walkingSound->setSource(QUrl("qrc:/assets/sfx_movement_footsteps1b.wav"));
+    walkingSound->setVolume(0.98f);
 }
-*/
+
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
@@ -18,6 +23,8 @@ void Player::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_Left)
     {
         setPos(x() - walk_speed, y());
+        //walkingSound->play();
+
     }
 
     if(event->key() == Qt::Key_Right)
@@ -36,25 +43,44 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
     if(event->key() == Qt::Key_Space)
     {
-
+        this->drill();
+    }
+    const QList<QGraphicsItem*>& items = collidingItems();
+    for ( QGraphicsItem* item : items )
+    {
+        if (Tile* actual =dynamic_cast<Tile*>(item) )
+        {
+            if(actual->getType()=='#'){
+                //actual->growUp();
+                //qreal growFactor =
+                qDebug() << "lvl failed\n";
+                //actual->setScale( growthFactor );*/
+            }
+        }
     }
 }
 
-/*void Player::detectCollisions()
+void Player::setSkin(int skin)
 {
+    if(skin==1)
+        setPixmap(QPixmap(":/assets/dawn sprite.png"));
+}
+
+
+void Player::drill(){
     // Traverse all graphic items that are colliding with this
     const QList<QGraphicsItem*>& items = collidingItems();
-    //for ( QGraphicsItem* item : items )
+    for ( QGraphicsItem* item : items )
     {
-        // If a graphic item is an obstacle remove it from scene
-        if ( Obstacle* obstacle = dynamic_cast<Obstacle*>(item) )
+        // If a graphic item is an
+        if (Tile* actual =dynamic_cast<Tile*>(item) )
         {
             // Play the collision sound
-            //this->collisionSound->play();
+            if(actual->getType()=='O')
+                qDebug() << "lvl passed \n";
+            if(actual->getType()=='-')
+                qDebug() << "lvl failed\n";
 
-            // Stop current move animation and move in another direction
-            //this->moveAnimation->stop();
-            //this->move();
         }
     }
-}*/
+}

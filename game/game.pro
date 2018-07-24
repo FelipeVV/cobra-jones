@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,18 +29,21 @@ SOURCES += \
     level.cpp \
     Player.cpp \
     tile.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    GameMenuView.cpp \
+    GameLevelView.cpp
 
 HEADERS += \
         game.h \
     level.h \
     Player.h \
     tile.h \
-    mainwindow.h
+    mainwindow.h \
+    GameMenuView.h \
+    GameLevelView.h
 
 FORMS += \
-        game.ui \
-    mainwindow.ui
+    GameMenuView.ui
 
 RESOURCES += \
     ../assets/resources.qrc
