@@ -1,35 +1,20 @@
 # cobra-jones
-Juego como Indiana Jones que no es Indiana Jones.
-
 ## Quienes Somos?
-Córdoba C. Johan 
-
-Vega V. Felipe
-
-Estudiantes de Ciencias de la Computación e Informática en la Universidad de Costa Rica.
-
-Este juego se crea como proyecto de Programación 2 en C++
+Córdoba C. Johan y Vega V. Felipe.
+ Estudiantes de Ciencias de la Computación e Informática en la Universidad de Costa Rica.
+ Este juego se crea como proyecto de Programación 2 en C++
 
 ## Premisa
-El juego está inpirado en las historias y películas de aventura,  
+El juego está inpirado en las historias y películas de aventura,
 
 ## Visión
-* Diseñar un juego divertido.
 * Diseñar un juego que emita el sentimiento de exploración.
 * Crear un juego que tome espacio en un grid compuesto de diferentes elementos.
-* Crear una aplicación que proyecte una imagen sobre el monitor. 
-* Crear un juego con una estética y paleta de color uniforme.
 
 ## Mecánicas
-
-## Estética
-Por razones de tiempo, el juego se hará en estilo "pixel art". La paleta de color tendrá muchos colores y tonos café y tierra.
+* Esto no tiene nada y hay que mejorarlo
 
 ![](https://i.imgur.com/ohQxtvh.png)
-![](https://i.imgur.com/iXU70Kd.png)
-
-## Jugador
-La protagonista del juego se llama Selena "Cobra" Jones. El personaje fue diseñado desde una hoja de diseño escrita hasta ya el dibujo final. El arte final incluye rotaciones y expresiones del personaje.
 
 
 ## Primer Entregable
@@ -49,14 +34,3 @@ La protagonista del juego se llama Selena "Cobra" Jones. El personaje fue diseñ
 3. Hay más de un nivel
 
 4. El jugador es capaz de seleccionar niveles en un tipo de menu
-
-
-El juego se basa en el problema del primer examen, que trata de un juego de exploración por niveles.
-
-Una matriz contiene dos tipos de caracteres: '-' y '#'
-
-* '#': Las celdas con este caracter representan las casillas ocuras. 
-
-* '-': Este caracter es el "relleno". Los mosaicos sin trampas.
-
-* 'O': Este caracter representa la solucion al nivel, es la celda mas alejada de todas las celdas oscuras.
