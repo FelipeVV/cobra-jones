@@ -145,6 +145,6 @@ int Game::run()
         return result;
 
     this->mainWindow = new MainWindow(this->levels);
-    mainWindow->show();`
+    mainWindow->show();
     return exec();
 }

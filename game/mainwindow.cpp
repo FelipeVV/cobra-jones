@@ -1,14 +1,7 @@
 #include "MainWindow.h"
-//#include "ui_mainwindow.h"
 #include "GameMenuView.h"
 #include "ui_GameMenuView.h"
-
-/*MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-}*/
+#include <QDebug>
 
 MainWindow::MainWindow(const QVector<Level*>& levels, QWidget* parent)
     : QMainWindow(parent)
@@ -24,11 +17,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::buildInterface()
 {
-    this->setWindowTitle("La Cobra que no cobra :'D");
+    // Set the window title
+    this->setWindowTitle("Cobra Jones");
 
     // For desktop, resize the main window
   #if ! defined(Q_OS_ANDROID) && ! defined(Q_OS_IOS)
-    this->resize(320, 480);
+    this->resize(512,320);
   #endif
 }
 
@@ -39,11 +33,15 @@ void MainWindow::showGameMenu()
     this->setCentralWidget( gameMenuView );
 
     // Now the application is in game menu state
-    //this->state = GameState::gameMenu;
+    this->state = GameState::gameMenu;
+    connect(gameMenuView,SIGNAL(playGame(int)),this,SLOT(playGameRequested(int)));
 }
 
-
-/*MainWindow::~MainWindow()
+void MainWindow::playGameRequested(int levelRequested)
 {
-    //delete ui;
-}*/
+    qDebug() << "playing level " << levelRequested;
+    // create the view and scene for play the game
+
+    // call the funtion that manage the view and scene
+
+}

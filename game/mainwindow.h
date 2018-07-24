@@ -6,9 +6,14 @@
 
 class Level;
 
-//namespace Ui {
-//class MainWindow;
-//}
+enum class GameState
+{
+    unknown, // = 0
+    gameMenu
+    //askQuestion,
+    //answer,
+    //statistics
+};
 
 class MainWindow : public QMainWindow
 {
@@ -17,6 +22,7 @@ class MainWindow : public QMainWindow
 
   private:
     const QVector<Level*>& levels;
+    GameState state = GameState::unknown;
 
   public:
     explicit MainWindow(const QVector<Level*>& levels,QWidget* parent = nullptr);
@@ -27,6 +33,9 @@ class MainWindow : public QMainWindow
   protected:
     void buildInterface();
     void showGameMenu();
+
+  private slots:
+    void playGameRequested(int levelRequested);
 };
 
 #endif // MAINWINDOW_H
