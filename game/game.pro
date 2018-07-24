@@ -30,7 +30,8 @@ SOURCES += \
     Player.cpp \
     tile.cpp \
     mainwindow.cpp \
-    GameMenuView.cpp
+    GameMenuView.cpp \
+    GameLevelView.cpp
 
 HEADERS += \
         game.h \
@@ -38,7 +39,8 @@ HEADERS += \
     Player.h \
     tile.h \
     mainwindow.h \
-    GameMenuView.h
+    GameMenuView.h \
+    GameLevelView.h
 
 FORMS += \
     GameMenuView.ui

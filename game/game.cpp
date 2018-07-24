@@ -1,7 +1,7 @@
-#include <QGraphicsView>
-#include <QGraphicsScene>
+//#include <QGraphicsView>
+//#include <QGraphicsScene>
 #include <QFile>
-#include <QGraphicsPixmapItem>
+//#include <QGraphicsPixmapItem>
 #include <QDebug>
 #include <iostream>
 
@@ -11,18 +11,17 @@
 
 
 //borrar
-#include "Player.h"
-#include "tile.h"
+//#include "Player.h"
+//#include "tile.h"
 
-Game::Game(int &argc, char **argv, int flags)
-    : QApplication(argc, argv, flags)
+Game::Game(int &argc, char **argv)
+    : QApplication(argc, argv)
 {
 }
 
 Game::~Game()
 {
-    //delete this->scene;
-    //delete this->view;
+    delete this->mainWindow;
 }
 
 int Game::loadLevels(const int& number)

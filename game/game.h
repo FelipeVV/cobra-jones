@@ -5,10 +5,10 @@
 #include <QVector>
 
 //borrar
-#include "Level.h"
-#include "tile.h"
-class QGraphicsScene;
-class QGraphicsView;
+//#include "Level.h"
+//#include "tile.h"
+//class QGraphicsScene;
+//class QGraphicsView;
 
 
 class MainWindow;
@@ -22,20 +22,9 @@ class Game: public QApplication
     QVector<Level*> levels;
     MainWindow* mainWindow = nullptr;
 
-  /*protected:
-    // Manages graphic items. It is an invisible manager
-    QGraphicsScene* scene;
-    /// A visible widget that renders the scene
-    QGraphicsView* view;
-    double screenWidth = 800.0;
-    double screenHeight = 800.0;
-
-    QVector<Tile*> tiles;
-    */
   public:
     /// Constructor
-    Game(int &argc, char **argv, int flags = ApplicationFlags);
-    //Game(int& argc, char **argv);
+    Game(int &argc, char **argv);
     /// Destructor
     ~Game();
     /// Call this method instead of exec()
