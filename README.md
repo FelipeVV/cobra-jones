@@ -112,16 +112,13 @@ El juego está inpirado en las historias y películas de aventura, como Indiana 
 # Extras #
 
 ## Agradecimientos ##
-* Profesor Jeisson Hidalgo por ayudarnos y ser mentor en todo este trayecto.
-* La amiga de Felipe por diseñar (en papel) a la protagonista, Selena Jones.
-
-![](https://i.imgur.com/crktRUz.png)
-
+* Profesor Jeisson Hidalgo, por ayudarnos y ser mentor en todo este trayecto.
+* Lucía, por diseñar (en papel) a la protagonista, Selena Jones.
 * Profesor de Diseno de Personaje Roberto Milén, por ayudar en la elaboracion y personalidad de Selena.
 
 ![](https://i.imgur.com/WlnVFZA.jpg)
 
-* El primo de Felipe por leer el README y entenderlo, ademas de ofrecer realimentacion. Tambien dibujó el *sketch* de Game Over.
+* Jose, por leer el README y entenderlo, ademas de ofrecer realimentacion. Tambien dibujó el *sketch* de Game Over.
 
 ![](https://i.imgur.com/AlIqgty.jpg)
 
