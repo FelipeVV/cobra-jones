@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/assets">
-        <file>levels.txt</file>
         <file>Background.png</file>
         <file>avatar.png</file>
         <file>floor.png</file>
@@ -11,5 +10,9 @@
         <file>tileSpecial.png</file>
         <file>sfx_movement_footsteps1b.wav</file>
         <file>level02.txt</file>
+        <file>level01.txt</file>
+        <file>level03.txt</file>
+        <file>levelList.txt</file>
+        <file>levels.txt</file>
     </qresource>
 </RCC>

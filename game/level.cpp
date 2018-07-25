@@ -55,7 +55,8 @@ void Level::loadMatrix(QFile &file)
             matrix[actualRow][actualCol]=actual;// Adding char to matrix
             actualCol++;
             //qDebug()<<actual;
-        }else // Its the end of a line, the row value increase and the cols starts from 0 again
+        }
+        else // Its the end of a line, the row value increase and the cols starts from 0 again
         {
             actualRow++;
             actualCol=0;

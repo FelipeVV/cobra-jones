@@ -3,6 +3,7 @@
 
 #include <QApplication>
 #include <QVector>
+#include <QString>
 
 //borrar
 //#include "Level.h"
@@ -18,6 +19,9 @@ class QFile;
 class Game: public QApplication
 {
     DISABLE_COPY_CLASS(Game);
+  public:
+    QString levelsDirectory = ":/assets/";
+    QString levelListLocation = ":/assets/levelList.txt";
   private:
     QVector<Level*> levels;
     MainWindow* mainWindow = nullptr;
@@ -32,7 +36,8 @@ class Game: public QApplication
 
   private:
     /// Load level file
-    int loadLevels(const int& number);
+    int loadLevels();
+    int createLevel(const QString direction);
     int displayLevel(int levelIndex);
 };
 
