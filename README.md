@@ -1,4 +1,4 @@
-![](https://i.imgur.com/6LOJd2R.jpg)
+![](https://i.imgur.com/ENAXPiO.jpg)
 
 # Cobra Jones.
 Un juego de adivinar.

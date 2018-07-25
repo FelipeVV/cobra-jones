@@ -2,9 +2,10 @@
 #include <QKeyEvent>
 #include <QSoundEffect>
 #include <QApplication>
+#include <tile.h>
 
 #include "Player.h"
-#include <tile.h>
+#include "holeanimation.h"
 
 Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY)
 {
@@ -60,11 +61,17 @@ void Player::keyPressEvent(QKeyEvent *event)
             if(actual->getType()=='#'){
                 //actual->growUp();
                 //qreal growFactor =
-                qDebug() << "lvl failed\n";
+                levelFail();
                 //actual->setScale( growthFactor );*/
             }
         }
     }
+}
+
+void Player::levelFail()
+{
+    qDebug() << "lvl failed\n";
+    holeAnimation* hole = new holeAnimation(0, 0, 100, 100, 0, 0);
 }
 
 void Player::setSkin(int skin)
@@ -116,7 +123,7 @@ void Player::drill(){
             if(actual->getType()=='O')
                 qDebug() << "lvl passed \n";
             if(actual->getType()=='-')
-                qDebug() << "lvl failed\n";
+                levelFail();
 
         }
     }

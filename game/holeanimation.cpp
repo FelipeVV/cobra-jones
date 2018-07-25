@@ -1,46 +1,19 @@
 #include "holeanimation.h"
+#include <QGraphicsRectItem>
+#include <QPainter>
+#include <QDebug>
 
-holeAnimation::holeAnimation(QObject *parent)
-    : QAbstractItemModel(parent)
+
+holeAnimation::holeAnimation(double x1, double y1, double x2, double y2, double maxWidth, double maxHeight)
 {
-}
+    qDebug() << "hole created";
+    QGraphicsRectItem *rect = new QGraphicsRectItem();
 
-QVariant holeAnimation::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    // FIXME: Implement me!
-}
+    double holeWidth = x2 - x1;
+    double holeHeight = y2 - y1;
 
-QModelIndex holeAnimation::index(int row, int column, const QModelIndex &parent) const
-{
-    // FIXME: Implement me!
-}
+    QPainter painter(this);
 
-QModelIndex holeAnimation::parent(const QModelIndex &index) const
-{
-    // FIXME: Implement me!
-}
-
-int holeAnimation::rowCount(const QModelIndex &parent) const
-{
-    if (!parent.isValid())
-        return 0;
-
-    // FIXME: Implement me!
-}
-
-int holeAnimation::columnCount(const QModelIndex &parent) const
-{
-    if (!parent.isValid())
-        return 0;
-
-    // FIXME: Implement me!
-}
-
-QVariant holeAnimation::data(const QModelIndex &index, int role) const
-{
-    if (!index.isValid())
-        return QVariant();
-
-    // FIXME: Implement me!
-    return QVariant();
+    rect->setRect(x1, x2, holeWidth, holeHeight);
+    painter.fillRect(rect, QBrush(QColor(128, 128, 255, 255)));
 }

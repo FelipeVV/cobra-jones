@@ -15,6 +15,7 @@ class Player: public QGraphicsPixmapItem
     /// ???
     void drill();
     void setSkin(int skin);
+    void levelFail();
   protected:
     QSoundEffect* walkingSound=nullptr;
     double xWalkDistance = 0.0;
