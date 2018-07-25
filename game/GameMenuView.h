@@ -30,7 +30,9 @@ class GameMenuView : public QWidget
     void playGame(int level);
 
   private slots:
-    // Slot for play request
+    // Slot for play new game request
+    void tryToPlayNewGame();
+    // Slot for play request with specific level
     void tryToPlay();
     // Slot for change initial level
     void changeLevelWanted(int level);

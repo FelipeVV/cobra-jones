@@ -10,6 +10,8 @@ GameMenuView::GameMenuView(QWidget *parent) :
     ui->setupUi(this);
 
     // when play button is pressed, connect that event with the MainWindow
+    connect(ui->pushButton_2,&QPushButton::clicked, this,GameMenuView::tryToPlayNewGame);
+
     connect(ui->pushButton,&QPushButton::clicked, this,GameMenuView::tryToPlay);
 
     // value of the spinbox have been changed
@@ -23,8 +25,14 @@ GameMenuView::~GameMenuView()
 
 void GameMenuView::tryToPlay()
 {
-    // Signal when the user want to play the game, the parameter is the level to charge
+    // Signal when the user want to play the game in a specific level
     emit playGame(levelWanted);
+}
+
+void GameMenuView::tryToPlayNewGame()
+{
+    // Signal when the user want to play new game, that means start in first level
+    emit playGame(1);
 }
 
 void GameMenuView::changeLevelWanted(int level)
