@@ -27,24 +27,24 @@ void Player::keyPressEvent(QKeyEvent *event)
 {
 
     // React to input
-    if(event->key() == Qt::Key_Left)
+    if((event->key() == Qt::Key_Left) && !collisionLeft() )
     {
         setPos(x() - xWalkDistance, y());
         //walkingSound->play();
 
     }
 
-    if(event->key() == Qt::Key_Right)
+    if( (event->key() == Qt::Key_Right) && !collisionRight())
     {
         setPos(x() + xWalkDistance, y());
     }
 
-    if(event->key() == Qt::Key_Up)
+    if( (event->key() == Qt::Key_Up) && !collisionUp() )
     {
         setPos(x(), y() - yWalkDistance);
     }
 
-    if(event->key() == Qt::Key_Down)
+    if( (event->key() == Qt::Key_Down) && !collisionDown() )
     {
         setPos(x(), y() + yWalkDistance);
     }
@@ -73,6 +73,36 @@ void Player::setSkin(int skin)
         setPixmap(QPixmap(":/assets/dawn sprite.png"));
 }
 
+bool Player::collisionLeft()
+{
+    if( x() <= 0 )
+        return true;
+    return false;
+}
+
+bool Player::collisionUp()
+{
+    if( y() <= 0 )
+        return true;
+    return false;
+}
+
+
+bool Player::collisionRight()
+{
+    double roomWidth = 800.0;
+    if( x() >= roomWidth - xWalkDistance )
+        return true;
+    return false;
+}
+
+bool Player::collisionDown()
+{
+    double roomHeight = 600.0;
+    if( y() >= roomHeight - yWalkDistance )
+        return true;
+    return false;
+}
 
 void Player::drill(){
     // Traverse all graphic items that are colliding with this

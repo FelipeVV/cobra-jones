@@ -20,6 +20,10 @@ class Player: public QGraphicsPixmapItem
     double xWalkDistance = 0.0;
     double yWalkDistance = 0.0;
     double walk_speed = 10.0;
+    bool collisionLeft();
+    bool collisionRight();
+    bool collisionUp();
+    bool collisionDown();
 };
 
 #endif // PLAYER_H
