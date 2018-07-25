@@ -83,7 +83,7 @@ void MainWindow::playGameRequested(int levelRequested)
 {
     qDebug() << "playing level " << levelRequested;
 
-    // create the mannager for play the level
+    // create the mannager to play the level
     this->gameLevelView = new GameLevelView(levels[levelRequested-1],this);
     this->setCentralWidget(gameLevelView);
     //delete this->gameMenuView;

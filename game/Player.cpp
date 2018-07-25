@@ -6,8 +6,15 @@
 #include "Player.h"
 #include <tile.h>
 
-Player::Player()
+Player::Player(double tileHeight, double tileWidth, double spawnX, double spawnY)
 {
+    // Set the walking speed in each axis
+    xWalkDistance = tileWidth;
+    yWalkDistance = tileHeight;
+
+    //change x and y
+    setPos(spawnX, spawnY);
+
     // Pre-load the collision sound
     walkingSound = new QSoundEffect(qApp);
     walkingSound->setSource(QUrl("qrc:/assets/sfx_movement_footsteps1b.wav"));
@@ -19,27 +26,26 @@ void Player::keyPressEvent(QKeyEvent *event)
 {
 
     // React to input
-    double walk_speed = 10.0;
     if(event->key() == Qt::Key_Left)
     {
-        setPos(x() - walk_speed, y());
+        setPos(x() - xWalkDistance, y());
         //walkingSound->play();
 
     }
 
     if(event->key() == Qt::Key_Right)
     {
-        setPos(x() + walk_speed, y());
+        setPos(x() + xWalkDistance, y());
     }
 
     if(event->key() == Qt::Key_Up)
     {
-        setPos(x(), y() - walk_speed);
+        setPos(x(), y() - yWalkDistance);
     }
 
     if(event->key() == Qt::Key_Down)
     {
-        setPos(x(), y() + walk_speed);
+        setPos(x(), y() + yWalkDistance);
     }
     if(event->key() == Qt::Key_Space)
     {

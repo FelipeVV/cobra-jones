@@ -14,11 +14,11 @@ void GameLevelView::loadLevelView()
     displayLevel();
 
     //add the player caracter
-    Player* playerCharacter = new Player();
+    Player* playerCharacter = new Player(tileWidth, tileHeight);
     playerCharacter->setSkin(1);
     scene->addItem(playerCharacter);
 
-    // make rect focusable
+    // make player focusable
     playerCharacter->setFlag(QGraphicsItem::ItemIsFocusable);
     playerCharacter->setFocus();
 
@@ -57,11 +57,11 @@ GameLevelView::~GameLevelView()
 
 void GameLevelView::displayLevel()
 {
-    double rows = static_cast<double>(currentLevel->rows);
-    double cols = static_cast<double>(currentLevel->cols);
-    double imgSide = 32.0;
-    double tileWidth = screenWidth / cols;
-    double tileHeight = screenHeight / rows;
+    rows = static_cast<double>(currentLevel->rows);
+    cols = static_cast<double>(currentLevel->cols);
+    imgSide = 32.0;
+    tileWidth = screenWidth / cols;
+    tileHeight = screenHeight / rows;
     qreal growthFactor = tileWidth / imgSide;
 
     qDebug() << rows << "\n" << cols << "\n" << tileWidth << "\n" << tileHeight << "\n";
