@@ -21,7 +21,16 @@ class Player: public QGraphicsPixmapItem
     void drill();
     void setSkin(int skin);
     void tryGoMenu();
-
+    void levelFail();
+  protected:
+    QSoundEffect* walkingSound=nullptr;
+    double xWalkDistance = 0.0;
+    double yWalkDistance = 0.0;
+    double walk_speed = 10.0;
+    bool collisionLeft();
+    bool collisionRight();
+    bool collisionUp();
+    bool collisionDown();
 };
 
 #endif // PLAYER_H

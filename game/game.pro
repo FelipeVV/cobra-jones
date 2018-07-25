@@ -31,7 +31,8 @@ SOURCES += \
     Tile.cpp \
     MainWindow.cpp \
     GameMenuView.cpp \
-    GameLevelView.cpp
+    GameLevelView.cpp \
+    holeanimation.cpp
 
 HEADERS += \
         Game.h \
@@ -40,7 +41,8 @@ HEADERS += \
     Tile.h \
     MainWindow.h \
     GameMenuView.h \
-    GameLevelView.h
+    GameLevelView.h \
+    holeanimation.h
 
 FORMS += \
     GameMenuView.ui
