@@ -13,12 +13,11 @@ MainWindow::MainWindow(const QVector<Level*>& levels, QWidget* parent)
 {
     this->buildInterface();
     this->showGameMenu();
+    //playGameRequested(1);
 }
 
 MainWindow::~MainWindow()
 {
-    //delete view;
-    //delete scene;
     delete gameMenuView;
 }
 
