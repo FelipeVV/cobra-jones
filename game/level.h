@@ -8,8 +8,7 @@ class Level
 {
     friend class GameLevelView;
     friend class MainWindow;
-    //Q_DISABLE_COPY(Level);
-    //deshabilitar copias
+    Q_DISABLE_COPY(Level);
   private:
     int rows;
     int cols;

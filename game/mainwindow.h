@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
-#include <QMainWindow>
+#include <QWidget>
+//#include <QMainWindow>
 #include <QVector>
 
 class GameMenuView;
@@ -16,7 +16,7 @@ enum class GameState
 
 };
 
-class MainWindow : public QMainWindow
+class MainWindow: public QWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(MainWindow)
@@ -37,7 +37,7 @@ class MainWindow : public QMainWindow
     virtual ~MainWindow();
 
   protected:
-    void buildInterface();
+    //void buildInterface();
     void showGameMenu();
     void loadLevelView(int levelToCharge);
 

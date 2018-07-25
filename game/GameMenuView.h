@@ -10,6 +10,7 @@ class GameMenuView;
 /// This is the Game Menu where the player manage the diferent options
 class GameMenuView : public QWidget
 {
+    Q_DISABLE_COPY(GameMenuView)
   private:
     // Initial level when the player start playing
     int levelWanted = 1;
@@ -17,7 +18,7 @@ class GameMenuView : public QWidget
 
   public:
     /// Constructor
-    explicit GameMenuView(QWidget *parent = 0);
+    explicit GameMenuView(QWidget *parent = nullptr);
     /// Destructor
     ~GameMenuView();
 

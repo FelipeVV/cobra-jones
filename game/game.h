@@ -5,12 +5,6 @@
 #include <QVector>
 #include <QString>
 
-//borrar
-//#include "Level.h"
-//#include "tile.h"
-//class QGraphicsScene;
-//class QGraphicsView;
-
 
 class MainWindow;
 class Level;

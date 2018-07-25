@@ -1,6 +1,6 @@
 #include <QFile>
+#include <QTextStream>
 #include <QDebug>
-#include <iostream>
 #include "game.h"
 #include "mainwindow.h"
 #include "level.h"
@@ -15,7 +15,7 @@ Game::Game(int &argc, char **argv)
 
 Game::~Game()
 {
-    //delete this->mainWindow;
+    delete this->mainWindow;
 }
 
 
@@ -60,10 +60,12 @@ int Game::createLevel(const QString direction)
 
 int Game::run()
 {
-    if( int result = loadLevels())//numero de niveles
+    if( int result = loadLevels()){
         return result;
+        qDebug()<<"Error al cargar niveles";
+    }
 
     this->mainWindow = new MainWindow(this->levels);
-    mainWindow->show();
+    //mainWindow->show();
     return exec();
 }

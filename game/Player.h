@@ -9,7 +9,7 @@ class Player: public QGraphicsPixmapItem
 
   public:
     ///constructor
-    Player(double tileHeight, double tileWidth);
+    Player(double tileHeight, double tileWidth, double spawnX = 0, double spawnY = 0);
     /// Called if this object has the focus and a key is pressed by user
     void keyPressEvent(QKeyEvent* event);
     /// ???

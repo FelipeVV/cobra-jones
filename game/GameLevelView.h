@@ -11,7 +11,7 @@ class Tile;
 
 class GameLevelView: public QWidget
 {
-    //DISABLE_COPY_CLASS(GameLevelView);
+    Q_DISABLE_COPY(GameLevelView)
 
 
   protected:
