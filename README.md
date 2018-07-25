@@ -125,8 +125,6 @@ El juego está inpirado en las historias y películas de aventura, como Indiana 
 
 ![](https://i.imgur.com/AlIqgty.jpg)
 
-* El amigo Gabriel, de la escuela de biologia por leer el README, entenderlo, y ofrecer realimentacion.
-
 ## Final Boss ##
 
 ![](https://i.imgur.com/sUxd5gw.jpg)
