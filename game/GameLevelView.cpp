@@ -3,18 +3,28 @@
 #include <QGraphicsView>
 #include <QDebug>
 #include <QColor>
+#include <QtMath>
+#include <QDebug>
 
 #include "Player.h"
 #include "tile.h"
 #include "level.h"
+
+#define NEWLINE "\n"
 
 void GameLevelView::loadLevelView()
 {
     // Add the level items
     displayLevel();
 
+    // Calculate the place in the center where the player should spawn
+    double spawnX = floor((screenWidth/2)/tileWidth) * tileWidth;
+    double spawnY = floor((screenHeight/2)/tileHeight) * tileHeight;
+    qDebug() << "Width: "<< screenWidth << ". Height: " << screenHeight << NEWLINE
+            << "spawnX: " << spawnX << ". spawnY: " << spawnY;
+
     //add the player caracter
-    Player* playerCharacter = new Player(tileWidth, tileHeight);
+    Player* playerCharacter = new Player(tileWidth, tileHeight, spawnX, spawnY);
     playerCharacter->setSkin(1);
     scene->addItem(playerCharacter);
 

@@ -6,14 +6,15 @@
 #include "Player.h"
 #include <tile.h>
 
-Player::Player(double tileHeight, double tileWidth, double spawnX, double spawnY)
+Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY)
 {
     // Set the walking speed in each axis
     xWalkDistance = tileWidth;
     yWalkDistance = tileHeight;
 
     //change x and y
-    setPos(spawnX, spawnY);
+    setX(spawnX);
+    setY(spawnY);
 
     // Pre-load the collision sound
     walkingSound = new QSoundEffect(qApp);
