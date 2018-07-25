@@ -1,4 +1,5 @@
-# cobra-jones
+# Cobra Jones.
+Un juego de adivinar.
 ## Quienes Somos?
 Córdoba C. Johan y Vega V. Felipe.
  Estudiantes de Ciencias de la Computación e Informática en la Universidad de Costa Rica.
@@ -20,6 +21,7 @@ El juego está inpirado en las historias y películas de aventura, como Indiana 
 	* Platos: Este tipo de piso tiene un antiguo y valioso artefacto escondido, pero para excabarlo, el jugador debe taladrear el piso.
 * Como es una vista desde arriba, la habitacion parecera una cuadricula llena de mosaicos de diferentes tipos.
 * Hoy en dia muchos juegos se disenan de esta forma, por ejemplo los nuevos titulos de Zelda. Nosotros queremos que nuestro juego se vea como uno de estos juegos:
+
 ![](https://i.imgur.com/awjBYDo.jpg)
 
 (Notese como el piso tiene un patron de cuadrados. Nosotros queremos lograr ese efecto.)
@@ -63,6 +65,9 @@ El juego está inpirado en las historias y películas de aventura, como Indiana 
 * Una vez parado encima del mosaico, el jugador puede presionar una tecla para taladrar el piso y ver si adivino correctamente.
 
 ## Juego ##
+
+![](https://i.imgur.com/eyvOikF.png)
+
 * Al iniciar la aplicacion, el jugador vera un menu de inicio mostrando 3 espacios principales:
 1. Nombre: El jugador puede elegir su nombre si desea. Por defecto se llama Selena, como la protagonista.
 2. Nuevo juego: Empieza a jugar desde el nivel uno.
@@ -71,7 +76,7 @@ El juego está inpirado en las historias y películas de aventura, como Indiana 
 ## Controles ##
 * El jugador puede manejar al avatar del juego con las flechas del teclado.
 
-![](http://www.dancetech.com/aa_dt_new/articles/pc_build_xp2000_kt333/bios/build_pc_xp2000_bios_arrow_keys.jpg)
+![](https://i.imgur.com/j0VfwaI.jpg)
 
 * Con esto el jugador se puede mover arriba, abajo, izquierda y derecha.
 * Taladro: Con espacio el jugador puede ver si abajo de su mosaico se encuentra el artefacto perdido.
