@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QKeyEvent>
 
 #include "MainWindow.h"
 #include "GameMenuView.h"
@@ -13,7 +14,9 @@ MainWindow::MainWindow(const QVector<Level*>& levels, QWidget* parent)
 {
     //this->buildInterface();
     this->showGameMenu();
-    //playGameRequested(1);
+    // When player press new game button or chose level button
+    connect(gameMenuView,SIGNAL(playGame(int)),this,SLOT(playGameRequested(int)));
+    //connect(gameLevelView,SIGNAL(goMenu()),this,SLOT(backToMenuRequested()));
 }
 
 MainWindow::~MainWindow()
@@ -35,22 +38,28 @@ MainWindow::~MainWindow()
 void MainWindow::showGameMenu()
 {
     // Show a dialog to ask for player's nickname and game mode
-    //GameMenuView* gameMenuView = new GameMenuView(this);
     gameMenuView = new GameMenuView();
     //this->setCentralWidget( gameMenuView );
     gameMenuView->show();
     // Now the application is in game menu state
     this->state = GameState::gameMenu;
-    connect(gameMenuView,SIGNAL(playGame(int)),this,SLOT(playGameRequested(int)));
 }
 
 void MainWindow::playGameRequested(int levelRequested)
 {
     qDebug() << "playing level " << levelRequested;
-
-    // create the mannager to play the level
+    // Now the application is in playing state
+    this->state = GameState::playing;
+    // Create the mannager to play the level
     this->gameLevelView = new GameLevelView(levels[levelRequested-1],this);
     // Hide the game menu widget
     this->gameMenuView->hide();
+    // Back to menu requested
 
+}
+
+void MainWindow::backToMenuRequested()
+{
+    gameLevelView->show();
+    delete this->gameLevelView;
 }

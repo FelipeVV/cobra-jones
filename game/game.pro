@@ -8,7 +8,7 @@ QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = game
+TARGET = CobraJones
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -24,21 +24,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        game.cpp \
-    level.cpp \
+        Main.cpp \
+        Game.cpp \
+    Level.cpp \
     Player.cpp \
-    tile.cpp \
-    mainwindow.cpp \
+    Tile.cpp \
+    MainWindow.cpp \
     GameMenuView.cpp \
     GameLevelView.cpp
 
 HEADERS += \
-        game.h \
-    level.h \
+        Game.h \
+    Level.h \
     Player.h \
-    tile.h \
-    mainwindow.h \
+    Tile.h \
+    MainWindow.h \
     GameMenuView.h \
     GameLevelView.h
 

@@ -1,10 +1,10 @@
 #include "GameLevelView.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include <QDebug>
 #include <QColor>
 #include <QtMath>
 #include <QDebug>
+#include <QKeyEvent>
 
 #include "Player.h"
 #include "tile.h"
@@ -24,13 +24,13 @@ void GameLevelView::loadLevelView()
             << "spawnX: " << spawnX << ". spawnY: " << spawnY;
 
     //add the player caracter
-    Player* playerCharacter = new Player(tileWidth, tileHeight, spawnX, spawnY);
-    playerCharacter->setSkin(1);
-    scene->addItem(playerCharacter);
+    player = new Player(tileWidth, tileHeight, spawnX, spawnY);
+    player->setSkin(1);
+    scene->addItem(player);
 
     // make player focusable
-    playerCharacter->setFlag(QGraphicsItem::ItemIsFocusable);
-    playerCharacter->setFocus();
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    player->setFocus();
 
     // Set a color background
     this->view->setBackgroundBrush(QBrush(QColor(231,180,155), Qt::SolidPattern));
@@ -64,6 +64,18 @@ GameLevelView::~GameLevelView()
     delete view;
     delete scene;
 }
+
+/*void GameLevelView::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key()==Qt::Key_P)
+        emit goMenu();
+}*/
+
+/*void GameLevelView::goToMenuRequested()
+{
+    // Signal for go to menu
+    emit goMenu();
+}*/
 
 void GameLevelView::displayLevel()
 {

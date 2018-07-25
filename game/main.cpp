@@ -1,5 +1,4 @@
-#include "game.h"
-#include "MainWindow.h"
+#include "Game.h"
 
 int main(int argc, char *argv[])
 {

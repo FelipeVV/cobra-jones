@@ -1,21 +1,20 @@
 #include <QTextStream>
-#include <QFile>
 #include <QChar>
 #include <QDebug>
 
-#include "level.h"
+#include "Level.h"
 
 Level::Level(QFile &file)
 {
-    // charge the matrix from file
     loadMatrix(file);
 }
 
-Level::~Level()//revisar
+Level::~Level()
 {
+    /// Deleting matrix
     for(int counter = 0;counter<this->rows;counter++)
-        delete this->matrix[counter];
-    delete this->matrix;
+        delete[] this->matrix[counter];
+    delete[] this->matrix;
 }
 
 QChar Level::getChar(int row, int col)
@@ -63,4 +62,5 @@ void Level::loadMatrix(QFile &file)
             //qDebug()<<"cambio de linea";
         }
     }
+    qDebug()<<"Level reading complete.\n";
 }

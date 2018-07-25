@@ -52,6 +52,10 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         this->drill();
     }
+    if(event->key() == Qt::Key_P)
+    {
+        qDebug()<<"cierrelo papi ";
+    }
     const QList<QGraphicsItem*>& items = collidingItems();
     for ( QGraphicsItem* item : items )
     {
