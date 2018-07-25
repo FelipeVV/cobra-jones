@@ -4,10 +4,6 @@
 #include <QWidget>
 #include <QVector>
 
-/*namespace Ui {
-class GameLevelView;
-}*/
-
 class QGraphicsScene;
 class QGraphicsView;
 class Level;
@@ -30,12 +26,13 @@ class GameLevelView: public QWidget
     /// Tiles in the view
     QVector<Tile*> tiles;
 
-  /*private:
-    Ui::GameLevelView *ui;*/
+  private:
+    void loadLevelView();
+    void displayLevel();
 
   public:
     /// Constructor
-    explicit GameLevelView(QWidget *parent = nullptr);
+    explicit GameLevelView(Level* currentLevel, QWidget *parent = nullptr);
     /// Destructor
     ~GameLevelView();
 

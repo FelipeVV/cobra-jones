@@ -45,9 +45,9 @@ void MainWindow::showGameMenu()
     connect(gameMenuView,SIGNAL(playGame(int)),this,SLOT(playGameRequested(int)));
 }
 
-void MainWindow::loadLevelView(int levelToCharge)
+/*void MainWindow::loadLevelView(int levelToCharge)
 {
-    /*double rows = static_cast<double>(levels[levelIndex]->rows);
+    double rows = static_cast<double>(levels[levelIndex]->rows);
     double cols = static_cast<double>(levels[levelIndex]->cols);
     double imgSide = 32.0;
     double tileWidth = screenWidth / cols;
@@ -76,19 +76,17 @@ void MainWindow::loadLevelView(int levelToCharge)
             qDebug() << "rect added to scene\n";
             //tiles.append(currentTile);
         }
-    }*/
+    }
     //return 0;
-}
+}*/
 
 void MainWindow::playGameRequested(int levelRequested)
 {
     qDebug() << "playing level " << levelRequested;
 
     // create the mannager for play the level
-    this->gameLevelView = new GameLevelView(this);
+    this->gameLevelView = new GameLevelView(levels[levelRequested-1],this);
     this->setCentralWidget(gameLevelView);
-    //this->scene = new QGraphicsScene();
-    //this->scene->setSceneRect(0, 0, screenWidth, screenHeight);
 
     // call the funtion that manage the view and scene
     //loadLevelView(levelRequested);

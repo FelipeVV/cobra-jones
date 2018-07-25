@@ -12,7 +12,7 @@ class GameMenuView : public QWidget
 {
   private:
     // Initial level when the player start playing
-    int levelWanted = 0;
+    int levelWanted = 1;
     Q_OBJECT
 
   public:

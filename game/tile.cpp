@@ -1,13 +1,14 @@
 #include "tile.h"
+#include <QChar>
 
 
-void Tile::setType(char ch)
+void Tile::setType(QChar ch)
 {
     this->type = ch;
     this->setArt(ch);
 }
 
-char Tile::getType()
+QChar Tile::getType()
 {
     return this->type;
 }
@@ -18,7 +19,7 @@ void Tile::growUp()
     //this->setScale();
 }
 
-void Tile::setArt(char tileType)
+void Tile::setArt(QChar tileType)
 {
     if (tileType=='-')
     {

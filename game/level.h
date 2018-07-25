@@ -6,7 +6,7 @@
 class QFile;
 class Level
 {
-    //friend class Game;
+    friend class GameLevelView;
     //Q_DISABLE_COPY(Level);
     //deshabilitar copias
   private:

@@ -3,19 +3,20 @@
 
 #include <QGraphicsPixmapItem>
 #include <QGraphicsRectItem>
+#include <QChar>
 
 class Tile : public QGraphicsPixmapItem
 {
   protected:
-    char type;
+    QChar type;
 
   public:
-    void setType(char ch);
-    char getType();
+    void setType(QChar ch);
+    QChar getType();
     void growUp();
 
   private:
-    void setArt(char tileType);
+    void setArt(QChar tileType);
 };
 
 #endif // TILE_H

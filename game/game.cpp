@@ -69,9 +69,9 @@ int Game::loadLevels(const int& number)
     //return 0;
 }
 
-int Game::displayLevel(int levelIndex)
+/*int Game::displayLevel(int levelIndex)
 {
-    /*double rows = static_cast<double>(levels[levelIndex]->rows);
+    double rows = static_cast<double>(levels[levelIndex]->rows);
     double cols = static_cast<double>(levels[levelIndex]->cols);
     double imgSide = 32.0;
     double tileWidth = screenWidth / cols;
@@ -100,9 +100,9 @@ int Game::displayLevel(int levelIndex)
             qDebug() << "rect added to scene\n";
             //tiles.append(currentTile);
         }
-    }*/
+    }
     return 0;
-}
+}*/
 
 int Game::run()
 {

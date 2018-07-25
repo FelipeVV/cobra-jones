@@ -23,7 +23,7 @@ GameMenuView::~GameMenuView()
 
 void GameMenuView::tryToPlay()
 {
-    // Signal when the user want to play the game, the parameter is the level previs
+    // Signal when the user want to play the game, the parameter is the level to charge
     emit playGame(levelWanted);
 }
 
