@@ -87,7 +87,7 @@ void MainWindow::playGameRequested(int levelRequested)
     // create the mannager to play the level
     this->gameLevelView = new GameLevelView(levels[levelRequested-1],this);
     this->setCentralWidget(gameLevelView);
-
+    //delete this->gameMenuView;
     // call the funtion that manage the view and scene
     //loadLevelView(levelRequested);
 
