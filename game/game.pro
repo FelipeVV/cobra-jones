@@ -24,28 +24,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        Main.cpp \
-        Game.cpp \
-    Level.cpp \
-    Player.cpp \
-    Tile.cpp \
-    MainWindow.cpp \
-    GameMenuView.cpp \
-    GameLevelView.cpp \
-    HoleAnimation.cpp
+	main.cpp \
+	game.cpp \
+	level.cpp \
+	Player.cpp \
+	tile.cpp \
+	mainwindow.cpp \
+	GameMenuView.cpp \
+	GameLevelView.cpp \
+	holeanimation.cpp
 
 HEADERS += \
-        Game.h \
-    Level.h \
-    Player.h \
-    Tile.h \
-    MainWindow.h \
-    GameMenuView.h \
-    GameLevelView.h \
-    HoleAnimation.h
+	game.h \
+	level.h \
+	Player.h \
+	tile.h \
+	mainwindow.h \
+	GameMenuView.h \
+	GameLevelView.h \
+	holeanimation.h
 
 FORMS += \
-    GameMenuView.ui
+	GameMenuView.ui
 
 RESOURCES += \
-    ../assets/resources.qrc
+	../assets/resources.qrc
