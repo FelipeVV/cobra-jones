@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QVector>
+#include "MainWindow.h"
 
 class QGraphicsScene;
 class QGraphicsView;
@@ -33,6 +34,8 @@ class GameLevelView: public QWidget
     double tileHeight = 0;
     /// Actual level
     Level* currentLevel = nullptr;
+    ///
+    MainWindow* father=nullptr;
     /// Player instance
     Player* player = nullptr;
     /// Tiles in the view
@@ -41,17 +44,18 @@ class GameLevelView: public QWidget
   private:
     void loadLevelView();
     void displayLevel();
-    void keyPressEvent(QKeyEvent *event);
-    void checkCollision(bool drill = false);
+    //void keyPressEvent(QKeyEvent *event);
+    //void checkCollision(bool drill = false);
     void levelFail();
     void drill();
 
   public:
     /// Constructor
-    explicit GameLevelView(Level* currentLevel, QWidget *parent = nullptr);
+    explicit GameLevelView(Level* currentLevel, QWidget *parent = nullptr, MainWindow* father =  nullptr);
     /// Destructor
     ~GameLevelView();
     void prueba();
+    void goToMenuRequested();
 
   signals:
     /// Signal for communicating to mainwindow
@@ -59,7 +63,7 @@ class GameLevelView: public QWidget
 
   private slots:
     /// Slot for go to menu request from client
-    void goToMenuRequested();
+
 
 };
 

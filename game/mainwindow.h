@@ -38,6 +38,8 @@ class MainWindow: public QWidget
     explicit MainWindow(const QVector<Level*>& levels,QWidget* parent = nullptr);
     /// Destructor
     virtual ~MainWindow();
+    /// Slot when user want go to main menu
+    void backToMenuRequested();
 
   protected:
     void showGameMenu();
@@ -46,8 +48,6 @@ class MainWindow: public QWidget
   private slots:
     /// Slot for the signal when the player press a button to play in menu
     void playGameRequested(int levelRequested);
-    /// Slot when user want go to main menu
-    void backToMenuRequested();
 };
 
 #endif // MAINWINDOW_H

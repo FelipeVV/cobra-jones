@@ -5,13 +5,15 @@
 #include <QString>
 #include <QList>
 #include "GameLevelView.h"
+#include <QKeyEvent>
 
 class QSoundEffect;
 
 class Player: public QGraphicsPixmapItem
 {
+    friend class GameLevelView;
   protected:
-    //GameLevelView* fatha;
+    GameLevelView* fatha;
     QSoundEffect* walkingSound=nullptr;
     double xWalkDistance = 0.0;
     double yWalkDistance = 0.0;
@@ -19,9 +21,10 @@ class Player: public QGraphicsPixmapItem
 
   public:
     ///constructor
-    Player(double tileWidth, double tileHeight, double spawnX, double spawnY);//, GameLevelView *fatha);
+    Player(double tileWidth, double tileHeight, double spawnX, double spawnY, GameLevelView *fatha);
     ~Player();
     /// ???
+    void keyPressEvent(QKeyEvent* event);
     void drill();
     void setSkin(int skin);
     void tryGoMenu();

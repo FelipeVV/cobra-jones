@@ -82,5 +82,6 @@ int Game::run()
     }
 
     this->mainWindow = new MainWindow(this->levels);
+    mainWindow->hide();
     return exec();
 }

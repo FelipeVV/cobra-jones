@@ -10,7 +10,28 @@
 #include "Tile.h"
 #include "Level.h"
 
+
 #define NEWLINE "\n"
+
+GameLevelView::GameLevelView(Level *currentLevel, QWidget *parent, MainWindow *father)
+  : QWidget(parent)
+  , currentLevel(currentLevel)
+    {
+        // An invisible object that manages all the items
+        this->scene = new QGraphicsScene();
+        this->scene->setSceneRect(0, 0, screenWidth, screenHeight);
+        this->father = father;
+        // A visible rectangle of the scene
+        this->view = new QGraphicsView(this->scene);
+        view->setFixedSize(screenWidth, screenHeight);
+        loadLevelView();
+    }
+
+GameLevelView::~GameLevelView()
+{
+    delete view;
+    delete scene;
+}
 
 void GameLevelView::loadLevelView()
 {
@@ -24,12 +45,13 @@ void GameLevelView::loadLevelView()
             << "spawnX: " << spawnX << ". spawnY: " << spawnY;
 
     //add the player caracter
-    player = new Player(tileWidth, tileHeight, spawnX, spawnY);//,this);
+    player = new Player(tileWidth, tileHeight, spawnX, spawnY,this);
     player->setSkin(1);
     scene->addItem(player);
 
     // make f focusable
-    //this->setFocus();
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    player->setFocus();
 
     // Set a color background
     this->view->setBackgroundBrush(QBrush(QColor(231,180,155), Qt::SolidPattern));
@@ -45,7 +67,7 @@ void GameLevelView::loadLevelView()
     this->view->show();
 }
 
-void GameLevelView::keyPressEvent(QKeyEvent *event)
+/*void GameLevelView::keyPressEvent(QKeyEvent *event)
 {
 
     // React to input
@@ -78,7 +100,7 @@ void GameLevelView::keyPressEvent(QKeyEvent *event)
         qDebug()<<"cierrelo papi ";
     }
     checkCollision();
-}
+}*/
 
 void GameLevelView::levelFail()
 {
@@ -88,12 +110,12 @@ void GameLevelView::levelFail()
     scene->addItem(hole);*/
 }
 
-void GameLevelView::drill()
+/*void GameLevelView::drill()
 {
     checkCollision(true);
-}
+}*/
 
-void GameLevelView::checkCollision(bool drill)
+/*void GameLevelView::checkCollision(bool drill)
 {
     const QList<QGraphicsItem*>& playerCollidingItems = player->getCollidingItems();
     for ( QGraphicsItem* item : playerCollidingItems )
@@ -105,7 +127,7 @@ void GameLevelView::checkCollision(bool drill)
                 //actual->growUp();
                 //qreal growFactor =
                 levelFail();
-                //actual->setScale( growthFactor );*/
+                //actual->setScale( growthFactor );
             }
         }
         if ((actual) && (drill))
@@ -118,26 +140,8 @@ void GameLevelView::checkCollision(bool drill)
 
         }
     }
-}
+}*/
 
-GameLevelView::GameLevelView(Level *currentLevel, QWidget *parent)
-  : QWidget(parent)
-  , currentLevel(currentLevel)
-    {
-        // An invisible object that manages all the items
-        this->scene = new QGraphicsScene();
-        this->scene->setSceneRect(0, 0, screenWidth, screenHeight);
-        // A visible rectangle of the scene
-        this->view = new QGraphicsView(this->scene);
-        view->setFixedSize(screenWidth, screenHeight);
-        loadLevelView();
-    }
-
-GameLevelView::~GameLevelView()
-{
-    delete view;
-    delete scene;
-}
 
 void GameLevelView::prueba()
 {
@@ -150,11 +154,10 @@ void GameLevelView::prueba()
         emit goMenu();
 }*/
 
-/*void GameLevelView::goToMenuRequested()
+void GameLevelView::goToMenuRequested()
 {
-    // Signal for go to menu
-    emit goMenu();
-}*/
+    father->backToMenuRequested();
+}
 
 void GameLevelView::displayLevel()
 {

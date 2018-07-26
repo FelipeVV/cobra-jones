@@ -51,21 +51,19 @@ void MainWindow::playGameRequested(int levelRequested)
     // Now the application is in playing state
     this->state = GameState::playing;
 
-    /*Qt::WindowFlags flags = windowFlags();
-    setWindowFlags(flags | Qt::);*/
-
     // Create the mannager to play the level
     this->gameLevelView = new GameLevelView(levels[levelRequested-1],this);
-    gameLevelView->isActiveWindow();
-    gameLevelView->setFocus();
+    //gameLevelView->isActiveWindow();
+    /*gameLevelView->setFocus();*/
     // Hide the game menu widget
     this->gameMenuView->hide();
+    delete gameMenuView;
     // Back to menu requested
 
 }
 
 void MainWindow::backToMenuRequested()
 {
-    gameLevelView->show();
-    delete this->gameLevelView;
+    //this->set
+    this->gameMenuView->show();
 }

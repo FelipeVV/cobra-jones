@@ -6,9 +6,9 @@
 
 #include "Player.h"
 
-Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY)//, GameLevelView* fatha)
+Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY, GameLevelView* fatha)
 {
-    //this->fatha= fatha;
+    this->fatha= fatha;
     // Set the walking speed in each axis
     xWalkDistance = tileWidth;
     yWalkDistance = tileHeight;
@@ -80,4 +80,33 @@ const QList<QGraphicsItem *> Player::getCollidingItems()
 {
     const QList<QGraphicsItem*>& items = collidingItems();
     return items;
+}
+
+void Player::keyPressEvent(QKeyEvent *event)
+{
+
+    // React to input
+    if((event->key() == Qt::Key_Left)&& !collisionLeft())
+    {
+        move("left");
+    }
+
+    if( (event->key() == Qt::Key_Right) && !collisionRight())
+    {
+        move("right");
+    }
+
+    if( (event->key() == Qt::Key_Up) && !collisionUp())
+    {
+        move("up");
+    }
+
+    if( (event->key() == Qt::Key_Down) && !collisionDown() )
+    {
+        move("down");
+    }
+    if( (event->key() == Qt::Key_P))
+    {
+        fatha->goToMenuRequested();
+    }
 }

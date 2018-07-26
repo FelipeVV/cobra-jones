@@ -32,7 +32,7 @@ SOURCES += \
     MainWindow.cpp \
     GameMenuView.cpp \
     GameLevelView.cpp \
-    holeanimation.cpp
+    HoleAnimation.cpp
 
 HEADERS += \
         Game.h \
@@ -42,7 +42,7 @@ HEADERS += \
     MainWindow.h \
     GameMenuView.h \
     GameLevelView.h \
-    holeanimation.h
+    HoleAnimation.h
 
 FORMS += \
     GameMenuView.ui
