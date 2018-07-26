@@ -8,50 +8,56 @@
 #include "ui_GameMenuView.h"
 #include "GameLevelView.h"
 
+/// Run parent constructor
 MainWindow::MainWindow(const QVector<Level*>& levels, QWidget* parent)
 	: QWidget(parent)
 	, levels{levels}
 {
-	//this->buildInterface();
 	this->showGameMenu();
-	// When player press new game button or chose level button
-	connect(gameMenuView,SIGNAL(playGame(int)),this,SLOT(playGameRequested(int)));
-	//connect(gameLevelView,SIGNAL(goMenu()),this,SLOT(backToMenuRequested()));
+
+    /// Signal for when player presses 'new game' button or 'choose level' button.
+    connect(gameMenuView,SIGNAL(playGame(int)),this,SLOT(playGameRequested(int)));
 }
 
+/// Destructor
 MainWindow::~MainWindow()
 {
 	delete gameMenuView;
 }
 
+/// Create level view and tell it to show itself.
 void MainWindow::showGameMenu()
 {
-	// Show a dialog to ask for player's nickname and game mode
+    /// Create menuView
 	gameMenuView = new GameMenuView();
-	//this->setCentralWidget( gameMenuView );
+
+    /// Show it
 	gameMenuView->show();
-	// Now the application is in game menu state
+
+    /// Change state to gameMenu!
 	this->state = GameState::gameMenu;
 }
 
+/// This method is 'called' from a method in gameMenuView
+/// Requests to play a level. Which level, the one in parameters.
 void MainWindow::playGameRequested(int levelRequested)
 {
+    /// Update level requested
     requested = levelRequested;
-    qDebug() << "playing level " << levelRequested;
-    // Now the application is in playing state
+    qDebug() << "Requested level: " << levelRequested;
+
+    /// Change state to playing!
     this->state = GameState::playing;
 
-    // Create the mannager to play the level
+    /// Create the manager(GameLevelView) to play the level
     this->gameLevelView = new GameLevelView(levels,this);
+
+    /// Load the level requested, from the vector containing level meta data(rows, cols, matrix)
     this->gameLevelView->loadLevelView(requested-1);
-    //this->gameLevelView->removeLevel();
-    //gameLevelView->isActiveWindow();
-    //gameLevelView->setFocus();*/
-    // Hide the game menu widget
+
+    /// Hide the game menu widget
     this->gameMenuView->hide();
     delete gameMenuView;
-    // Back to menu requested
-
 }
 
 void MainWindow::backToMenuRequested()
