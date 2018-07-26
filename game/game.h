@@ -5,12 +5,6 @@
 #include <QVector>
 #include <QString>
 
-//borrar
-//#include "Level.h"
-//#include "tile.h"
-//class QGraphicsScene;
-//class QGraphicsView;
-
 
 class MainWindow;
 class Level;
@@ -20,7 +14,9 @@ class Game: public QApplication
 {
     DISABLE_COPY_CLASS(Game);
   public:
+    // All levels are in the assets directory
     QString levelsDirectory = ":/assets/";
+    // Document that contain levels names, if want add more levels modify this file
     QString levelListLocation = ":/assets/levelList.txt";
   private:
     QVector<Level*> levels;
@@ -37,8 +33,9 @@ class Game: public QApplication
   private:
     /// Load level file
     int loadLevels();
+    /// Create each level with their especific file name
     int createLevel(const QString direction);
-    int displayLevel(int levelIndex);
+
 };
 
 #endif // GAME_H

@@ -1,14 +1,14 @@
 #include "GameLevelView.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include <QDebug>
 #include <QColor>
 #include <QtMath>
 #include <QDebug>
+#include <QKeyEvent>
 
 #include "Player.h"
-#include "tile.h"
-#include "level.h"
+#include "Tile.h"
+#include "Level.h"
 
 #define NEWLINE "\n"
 
@@ -24,13 +24,13 @@ void GameLevelView::loadLevelView()
             << "spawnX: " << spawnX << ". spawnY: " << spawnY;
 
     //add the player caracter
-    Player* playerCharacter = new Player(tileWidth, tileHeight, spawnX, spawnY);
-    playerCharacter->setSkin(1);
-    scene->addItem(playerCharacter);
+    player = new Player(tileWidth, tileHeight, spawnX, spawnY);
+    player->setSkin(1);
+    scene->addItem(player);
 
     // make player focusable
-    playerCharacter->setFlag(QGraphicsItem::ItemIsFocusable);
-    playerCharacter->setFocus();
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    player->setFocus();
 
     // Set a color background
     this->view->setBackgroundBrush(QBrush(QColor(231,180,155), Qt::SolidPattern));
@@ -44,6 +44,81 @@ void GameLevelView::loadLevelView()
 
     // Show the view and enter in application's event loop
     this->view->show();
+}
+
+void GameLevelView::keyPressEvent(QKeyEvent *event)
+{
+
+    // React to input
+    if((event->key() == Qt::Key_Left) && !player->collisionLeft() )
+    {
+        player->move("left");
+
+    }
+
+    if( (event->key() == Qt::Key_Right) && !player->collisionRight())
+    {
+        player->move("right");
+    }
+
+    if( (event->key() == Qt::Key_Up) && !player->collisionUp() )
+    {
+        player->move("up");
+    }
+
+    if( (event->key() == Qt::Key_Down) && !player->collisionDown() )
+    {
+        player->move("down");
+    }
+    if(event->key() == Qt::Key_Space)
+    {
+        this->drill();
+    }
+    if(event->key() == Qt::Key_P)
+    {
+        qDebug()<<"cierrelo papi ";
+    }
+    checkCollision();
+}
+
+void GameLevelView::levelFail()
+{
+    qDebug() << "lvl failed\n";
+    /*
+    holeAnimation* hole = new holeAnimation(0, 0, 100, 100, 0, 0);
+    scene->addItem(hole);*/
+}
+
+void GameLevelView::drill()
+{
+    checkCollision(true);
+}
+
+void GameLevelView::checkCollision(bool drill)
+{
+    const QList<QGraphicsItem*>& playerCollidingItems = player->getCollidingItems();
+    for ( QGraphicsItem* item : playerCollidingItems )
+    {
+        Tile* actual = dynamic_cast<Tile*>(item);
+        if ( (actual) && (!drill))
+        {
+            if(actual->getType()=='#'){
+                //actual->growUp();
+                //qreal growFactor =
+                levelFail();
+                //actual->setScale( growthFactor );*/
+            }
+        }
+        if ((actual) && (drill))
+        {
+            // Play the collision sound
+            if(actual->getType()=='O')
+                qDebug() << "lvl passed \n";
+            if(actual->getType()=='-')
+                levelFail();
+
+        }
+    }
 }
 
 GameLevelView::GameLevelView(Level *currentLevel, QWidget *parent)
@@ -64,6 +139,18 @@ GameLevelView::~GameLevelView()
     delete view;
     delete scene;
 }
+
+/*void GameLevelView::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key()==Qt::Key_P)
+        emit goMenu();
+}*/
+
+/*void GameLevelView::goToMenuRequested()
+{
+    // Signal for go to menu
+    emit goMenu();
+}*/
 
 void GameLevelView::displayLevel()
 {

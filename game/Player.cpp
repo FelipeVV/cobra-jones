@@ -2,9 +2,10 @@
 #include <QKeyEvent>
 #include <QSoundEffect>
 #include <QApplication>
+#include <QString>
+#include <Tile.h>
 
 #include "Player.h"
-#include <tile.h>
 
 Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY)
 {
@@ -23,49 +24,7 @@ Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY
 }
 
 
-void Player::keyPressEvent(QKeyEvent *event)
-{
 
-    // React to input
-    if(event->key() == Qt::Key_Left)
-    {
-        setPos(x() - xWalkDistance, y());
-        //walkingSound->play();
-
-    }
-
-    if(event->key() == Qt::Key_Right)
-    {
-        setPos(x() + xWalkDistance, y());
-    }
-
-    if(event->key() == Qt::Key_Up)
-    {
-        setPos(x(), y() - yWalkDistance);
-    }
-
-    if(event->key() == Qt::Key_Down)
-    {
-        setPos(x(), y() + yWalkDistance);
-    }
-    if(event->key() == Qt::Key_Space)
-    {
-        this->drill();
-    }
-    const QList<QGraphicsItem*>& items = collidingItems();
-    for ( QGraphicsItem* item : items )
-    {
-        if (Tile* actual =dynamic_cast<Tile*>(item) )
-        {
-            if(actual->getType()=='#'){
-                //actual->growUp();
-                //qreal growFactor =
-                qDebug() << "lvl failed\n";
-                //actual->setScale( growthFactor );*/
-            }
-        }
-    }
-}
 
 void Player::setSkin(int skin)
 {
@@ -73,21 +32,51 @@ void Player::setSkin(int skin)
         setPixmap(QPixmap(":/assets/dawn sprite.png"));
 }
 
+bool Player::collisionLeft()
+{
+    if( x() <= 0 )
+        return true;
+    return false;
+}
 
-void Player::drill(){
-    // Traverse all graphic items that are colliding with this
+bool Player::collisionUp()
+{
+    if( y() <= 0 )
+        return true;
+    return false;
+}
+
+
+bool Player::collisionRight()
+{
+    double roomWidth = 800.0;
+    if( x() >= roomWidth - xWalkDistance )
+        return true;
+    return false;
+}
+
+bool Player::collisionDown()
+{
+    double roomHeight = 600.0;
+    if( y() >= roomHeight - yWalkDistance )
+        return true;
+    return false;
+}
+
+void Player::move(QString direction)
+{
+    if(direction == "left")
+        setPos(x() - xWalkDistance, y());
+    if(direction == "right")
+        setPos(x() + xWalkDistance, y());
+    if(direction == "up")
+        setPos(x(), y() - yWalkDistance);
+    if(direction == "down")
+        setPos(x(), y() + yWalkDistance);
+}
+
+const QList<QGraphicsItem *> Player::getCollidingItems()
+{
     const QList<QGraphicsItem*>& items = collidingItems();
-    for ( QGraphicsItem* item : items )
-    {
-        // If a graphic item is an
-        if (Tile* actual =dynamic_cast<Tile*>(item) )
-        {
-            // Play the collision sound
-            if(actual->getType()=='O')
-                qDebug() << "lvl passed \n";
-            if(actual->getType()=='-')
-                qDebug() << "lvl failed\n";
-
-        }
-    }
+    return items;
 }

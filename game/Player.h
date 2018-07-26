@@ -6,6 +6,11 @@ class QSoundEffect;
 
 class Player: public QGraphicsPixmapItem
 {
+  protected:
+    QSoundEffect* walkingSound=nullptr;
+    double xWalkDistance = 0.0;
+    double yWalkDistance = 0.0;
+    double walk_speed = 10.0;
 
   public:
     ///constructor
@@ -15,11 +20,14 @@ class Player: public QGraphicsPixmapItem
     /// ???
     void drill();
     void setSkin(int skin);
-  protected:
-    QSoundEffect* walkingSound=nullptr;
-    double xWalkDistance = 0.0;
-    double yWalkDistance = 0.0;
-    double walk_speed = 10.0;
+    void tryGoMenu();
+    void levelFail();
+    bool collisionLeft();
+    bool collisionRight();
+    bool collisionUp();
+    bool collisionDown();
+    void move(QString direction);
+    const QList<QGraphicsItem*> getCollidingItems();
 };
 
 #endif // PLAYER_H

@@ -1,22 +1,22 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
-#include <QMainWindow>
+#include <QWidget>
 #include <QVector>
 
 class GameMenuView;
 class Level;
 class GameLevelView;
+class Player;
 
 enum class GameState
 {
     unknown,
-    gameMenu
-    //otherStates,
+    gameMenu,
+    playing
 
 };
 
-class MainWindow : public QMainWindow
+class MainWindow: public QWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(MainWindow)
@@ -30,19 +30,24 @@ class MainWindow : public QMainWindow
   private:
     /// All the levels charged
     const QVector<Level*>& levels;
+    /// State of the game
     GameState state = GameState::unknown;
 
   public:
+    /// Cosntructor
     explicit MainWindow(const QVector<Level*>& levels,QWidget* parent = nullptr);
+    /// Destructor
     virtual ~MainWindow();
 
   protected:
-    void buildInterface();
     void showGameMenu();
     void loadLevelView(int levelToCharge);
 
   private slots:
+    /// Slot for the signal when the player press a button to play in menu
     void playGameRequested(int levelRequested);
+    /// Slot when user want go to main menu
+    void backToMenuRequested();
 };
 
 #endif // MAINWINDOW_H
