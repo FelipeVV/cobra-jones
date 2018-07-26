@@ -48,8 +48,6 @@ void GameLevelView::loadLevelView(int chargeLevel)
     // Calculate the place in the center where the player should spawn
     double spawnX = floor((screenWidth/2)/tileWidth) * tileWidth;
     double spawnY = floor((screenHeight/2)/tileHeight) * tileHeight;
-    //double spawnX = floor(tileWidth/4);
-    //double spawnY = floor(tileHeight/4);
     qDebug() << "Width: "<< screenWidth << ". Height: " << screenHeight << NEWLINE
             << "spawnX: " << spawnX << ". spawnY: " << spawnY;
 
@@ -130,9 +128,9 @@ void GameLevelView::removeLevel(int action)
     const QList<QGraphicsItem*>& allTiles = scene->items();
     for ( QGraphicsItem* item : allTiles )
     {
-        //Tile* actual = dynamic_cast<Tile*>(item);
+        Tile* actual = dynamic_cast<Tile*>(item);
         scene->removeItem(item);
-        //delete item;
+        delete actual;
     }
     manageAction(action);
 }

@@ -112,7 +112,7 @@ void Player::keyPressEvent(QKeyEvent *event)
 	}
 	if( (event->key() == Qt::Key_P))
 	{
-        fatha->removeLevel(2);
+        //fatha->removeLevel(2);
 	}
     if( (event->key() == Qt::Key_Space))
     {
@@ -166,7 +166,7 @@ void Player::checkCollision(bool drill)
             }
             else //!drill
             {
-                if(actual->getType()=='#')
+                if(actual->getType()=="#")
                 {
                     levelFail();
                 }
