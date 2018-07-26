@@ -24,13 +24,12 @@ void GameLevelView::loadLevelView()
             << "spawnX: " << spawnX << ". spawnY: " << spawnY;
 
     //add the player caracter
-    player = new Player(tileWidth, tileHeight, spawnX, spawnY);
+    player = new Player(tileWidth, tileHeight, spawnX, spawnY);//,this);
     player->setSkin(1);
     scene->addItem(player);
 
-    // make player focusable
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    player->setFocus();
+    // make f focusable
+    //this->setFocus();
 
     // Set a color background
     this->view->setBackgroundBrush(QBrush(QColor(231,180,155), Qt::SolidPattern));
@@ -53,7 +52,7 @@ void GameLevelView::keyPressEvent(QKeyEvent *event)
     if((event->key() == Qt::Key_Left) && !player->collisionLeft() )
     {
         player->move("left");
-
+        qDebug()<<"hereeeeee";
     }
 
     if( (event->key() == Qt::Key_Right) && !player->collisionRight())
@@ -138,6 +137,11 @@ GameLevelView::~GameLevelView()
 {
     delete view;
     delete scene;
+}
+
+void GameLevelView::prueba()
+{
+    qDebug() << "adskfn";
 }
 
 /*void GameLevelView::keyPressEvent(QKeyEvent *event)

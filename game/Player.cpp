@@ -2,13 +2,13 @@
 #include <QKeyEvent>
 #include <QSoundEffect>
 #include <QApplication>
-#include <QString>
 #include <Tile.h>
 
 #include "Player.h"
 
-Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY)
+Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY)//, GameLevelView* fatha)
 {
+    //this->fatha= fatha;
     // Set the walking speed in each axis
     xWalkDistance = tileWidth;
     yWalkDistance = tileHeight;
@@ -23,8 +23,9 @@ Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY
     walkingSound->setVolume(0.98f);
 }
 
-
-
+Player::~Player()
+{
+}
 
 void Player::setSkin(int skin)
 {

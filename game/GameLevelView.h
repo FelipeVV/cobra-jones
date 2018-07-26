@@ -51,6 +51,7 @@ class GameLevelView: public QWidget
     explicit GameLevelView(Level* currentLevel, QWidget *parent = nullptr);
     /// Destructor
     ~GameLevelView();
+    void prueba();
 
   signals:
     /// Signal for communicating to mainwindow

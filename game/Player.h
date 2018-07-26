@@ -2,11 +2,16 @@
 #define PLAYER_H
 
 #include <QGraphicsPixmapItem>
+#include <QString>
+#include <QList>
+#include "GameLevelView.h"
+
 class QSoundEffect;
 
 class Player: public QGraphicsPixmapItem
 {
   protected:
+    //GameLevelView* fatha;
     QSoundEffect* walkingSound=nullptr;
     double xWalkDistance = 0.0;
     double yWalkDistance = 0.0;
@@ -14,9 +19,8 @@ class Player: public QGraphicsPixmapItem
 
   public:
     ///constructor
-    Player(double tileWidth, double tileHeight, double spawnX, double spawnY);
-    /// Called if this object has the focus and a key is pressed by user
-    void keyPressEvent(QKeyEvent* event);
+    Player(double tileWidth, double tileHeight, double spawnX, double spawnY);//, GameLevelView *fatha);
+    ~Player();
     /// ???
     void drill();
     void setSkin(int skin);
