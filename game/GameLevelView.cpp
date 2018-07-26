@@ -1,4 +1,3 @@
-#include "GameLevelView.h"
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QColor>
@@ -7,6 +6,7 @@
 #include <QKeyEvent>
 #include <QList>
 
+#include "GameLevelView.h"
 #include "Player.h"
 #include "tile.h"
 #include "tilenormal.h"
@@ -14,30 +14,41 @@
 #include "tilespecial.h"
 #include "level.h"
 
-
 #define NEWLINE "\n"
 
+/// Call parent constructor.
+/// Set level to reference pased in parameters.
 GameLevelView::GameLevelView(const QVector<Level*>& levels,QWidget *parent, MainWindow *father)
   : QWidget(parent)
   , levels{levels}
     {
-        // An invisible object that manages all the items
+        /// An invisible object that manages all the items
         this->scene = new QGraphicsScene();
         this->scene->setSceneRect(0, 0, screenWidth, screenHeight);
         this->father = father;
-        // A visible rectangle of the scene
+
+        /// A visible rectangle of the scene
         this->view = new QGraphicsView(this->scene);
         view->setFixedSize(screenWidth, screenHeight);
-        // Show the view and enter in application's event loop
+
+        /// Show the view and enter in application's event loop
         this->view->show();
     }
 
+/// Destructor. Delete view and scene
 GameLevelView::~GameLevelView()
 {
 	delete view;
 	delete scene;
 }
 
+/// Heavy explanation:
+/// This might seem confusing at first, but a lot of local variables are
+/// instaned in order tom make it more edible.
+/// This methiod, based on the size of each tile.png and the size of the screen,
+/// creates the tile objects in the proper position and size.
+/// The formulas found in this method's body were taken from a whiteboard where we drew everything we needed.
+/// For more info go to (imgur.com) or check the picture in this proyect's bin directory.
 void GameLevelView::loadLevelView(int chargeLevel)
 {
     this->chargeLevel=chargeLevel;
@@ -72,11 +83,6 @@ void GameLevelView::loadLevelView(int chargeLevel)
 	this->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	this->view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-}
-
-void GameLevelView::prueba()
-{
-	qDebug() << "adskfn";
 }
 
 void GameLevelView::goToMenuRequested()
@@ -115,7 +121,7 @@ void GameLevelView::displayLevel()
             qDebug() << "tile added to scene";
             //tiles.append(currentTile);
 		}
-	}
+    }
 }
 
 void GameLevelView::removeLevel(int action)
@@ -150,6 +156,11 @@ void GameLevelView::manageAction(int action){
         goToMenuRequested();
 }
 
+/// create tile object depending on parameter char,
+/// which can be one of the following:
+/// O
+/// -
+/// #
 Tile* GameLevelView::createTile(QChar type)
 {
     if(type == '-')

@@ -19,38 +19,52 @@ class GameLevelView: public QWidget
   protected:
 	/// Manages graphic items. It is an invisible manager
 	QGraphicsScene* scene = nullptr;
-	/// A visible widget that renders the scene
+
+    /// A visible widget that renders the scene
 	QGraphicsView* view = nullptr;
-	/// Width and height of the view
+
+    /// Width and height of the view
 	double screenWidth = 800.0;
 	double screenHeight = 600.0;
-	/// Size in pixels of the squared mosaic picture used.
+
+    /// Size in pixels of the squared mosaic picture used.
 	double imgSide = 32.0;
-	/// Size in rows and cols of the level being loaded
+
+    /// Size in rows and cols of the level being loaded
 	double cols = 0;
 	double rows = 0;
-	/// Width and height
+
+    /// Width and height
 	double tileWidth = 0;
 	double tileHeight = 0;
-	/// Actual level
+
+    /// Actual level
     int chargeLevel;
-	///
+
+    /// Be able to know who is this instance's father/caller
 	MainWindow* father=nullptr;
-	/// Player instance
+
+    /// Player instance
 	Player* player = nullptr;
-	/// Tiles in the view
+
+    /// Tiles in the view
 	QVector<Tile*> tiles;
-    ///
+
+    /// levels vector
     const QVector<Level*>& levels;
 
   private:
+    /// Function that loads level
     void loadLevelView(int chargeLevel);
-
+    /// Load already loaded level
     void displayLevel();
-    //void keyPressEvent(QKeyEvent *event);
-    //void checkCollision(bool drill = false);
+    /// When player fails, this method runs
     void levelFail();
-    void drill();
+    /// create tile object depending on parameter char,
+    /// which can be one of the following:
+    /// O
+    /// -
+    /// #
     Tile* createTile(QChar type);
 
   public:
@@ -58,7 +72,6 @@ class GameLevelView: public QWidget
     explicit GameLevelView(const QVector<Level*>& levels,QWidget *parent = nullptr, MainWindow* father =  nullptr);
     /// Destructor
     ~GameLevelView();
-    void prueba();
     void removeLevel(int action);
     void goToMenuRequested();
     void manageAction(int action);
