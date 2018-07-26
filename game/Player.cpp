@@ -18,10 +18,8 @@ Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY
 	setX(spawnX);
 	setY(spawnY);
 
-	// Pre-load the collision sound
-	walkingSound = new QSoundEffect(qApp);
-	walkingSound->setSource(QUrl("qrc:/assets/sfx_movement_footsteps1b.wav"));
-	walkingSound->setVolume(0.98f);
+    /*qreal growthFactor = tileHeight / tileWidth;
+    setScale( growthFactor );*/
 }
 
 Player::~Player()
@@ -38,13 +36,15 @@ bool Player::collisionLeft()
 {
 	if( x() <= 0 )
 		return true;
+
 	return false;
 }
 
 bool Player::collisionUp()
 {
-	if( y() <= 0 )
-		return true;
+    if( y() <= 0 ){
+        return true;
+    }
 	return false;
 }
 
@@ -90,31 +90,35 @@ void Player::keyPressEvent(QKeyEvent *event)
 	if((event->key() == Qt::Key_Left)&& !collisionLeft())
 	{
 		move("left");
+        checkCollision(false);
 	}
 
 	if( (event->key() == Qt::Key_Right) && !collisionRight())
 	{
 		move("right");
+        checkCollision(false);
 	}
 
 	if( (event->key() == Qt::Key_Up) && !collisionUp())
 	{
 		move("up");
+        checkCollision(false);
 	}
 
 	if( (event->key() == Qt::Key_Down) && !collisionDown() )
 	{
 		move("down");
+        checkCollision(false);
 	}
 	if( (event->key() == Qt::Key_P))
 	{
-		fatha->goToMenuRequested();
+        fatha->removeLevel(2);
 	}
     if( (event->key() == Qt::Key_Space))
     {
         checkCollision(true);
     }
-    checkCollision(false);
+    //checkCollision(false);
 }
 
 void Player::checkCollision(bool drill)
@@ -123,14 +127,14 @@ void Player::checkCollision(bool drill)
     for ( QGraphicsItem* item : playerCollidingItems )
     {
         Tile* actual = dynamic_cast<Tile*>(item);
-        if ( (actual) && (!drill))
+        if ( (actual) && (!drill) && (y() == actual->y()))
         {
             if(actual->getType()=='#'){
                 qDebug()<<"lvl failed \n";
                 levelFail();
             }
         }
-        if ((actual) && (drill))
+        if ((actual) && (drill) && (y() == actual->y()))
         {
             // Play the collision sound
             if(actual->getType()=='O'){
@@ -147,10 +151,12 @@ void Player::checkCollision(bool drill)
 
 void Player::levelFail()
 {
-    setPixmap(QPixmap(":/assets/floor_dark.png"));
+    //setPixmap(QPixmap(":/assets/floor_dark.png"));
+    fatha->removeLevel(0);
 }
 
 void Player::levelWin()
 {
-    setPixmap(QPixmap(":/assets/avatar.png"));
+    //setPixmap(QPixmap(":/assets/avatar.png"));
+    fatha->removeLevel(1);
 }

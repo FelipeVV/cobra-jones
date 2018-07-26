@@ -5,16 +5,21 @@
 #include <QtMath>
 #include <QDebug>
 #include <QKeyEvent>
+#include <QList>
 
 #include "Player.h"
 #include "tile.h"
+#include "tilenormal.h"
+#include "tilebroken.h"
+#include "tilespecial.h"
 #include "level.h"
 
 
 #define NEWLINE "\n"
 
-GameLevelView::GameLevelView(QWidget *parent, MainWindow *father)
+GameLevelView::GameLevelView(const QVector<Level*>& levels,QWidget *parent, MainWindow *father)
   : QWidget(parent)
+  , levels{levels}
     {
         // An invisible object that manages all the items
         this->scene = new QGraphicsScene();
@@ -23,7 +28,8 @@ GameLevelView::GameLevelView(QWidget *parent, MainWindow *father)
         // A visible rectangle of the scene
         this->view = new QGraphicsView(this->scene);
         view->setFixedSize(screenWidth, screenHeight);
-        //loadLevelView();
+        // Show the view and enter in application's event loop
+        this->view->show();
     }
 
 GameLevelView::~GameLevelView()
@@ -32,9 +38,9 @@ GameLevelView::~GameLevelView()
 	delete scene;
 }
 
-void GameLevelView::loadLevelView(Level *currentLevel)
+void GameLevelView::loadLevelView(int chargeLevel)
 {
-    this->currentLevel=currentLevel;
+    this->chargeLevel=chargeLevel;
     // Add the level items
     displayLevel();
 
@@ -42,6 +48,8 @@ void GameLevelView::loadLevelView(Level *currentLevel)
     // Calculate the place in the center where the player should spawn
     double spawnX = floor((screenWidth/2)/tileWidth) * tileWidth;
     double spawnY = floor((screenHeight/2)/tileHeight) * tileHeight;
+    //double spawnX = floor(tileWidth/4);
+    //double spawnY = floor(tileHeight/4);
     qDebug() << "Width: "<< screenWidth << ". Height: " << screenHeight << NEWLINE
             << "spawnX: " << spawnX << ". spawnY: " << spawnY;
 
@@ -50,7 +58,7 @@ void GameLevelView::loadLevelView(Level *currentLevel)
 	player->setSkin(1);
 	scene->addItem(player);
 
-	// make f focusable
+    // make player focusable
 	player->setFlag(QGraphicsItem::ItemIsFocusable);
 	player->setFocus();
 
@@ -64,96 +72,12 @@ void GameLevelView::loadLevelView(Level *currentLevel)
 	this->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	this->view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	// Show the view and enter in application's event loop
-	this->view->show();
 }
-
-/*void GameLevelView::keyPressEvent(QKeyEvent *event)
-{
-
-	// React to input
-	if((event->key() == Qt::Key_Left) && !player->collisionLeft() )
-	{
-		player->move("left");
-		qDebug()<<"hereeeeee";
-	}
-
-	if( (event->key() == Qt::Key_Right) && !player->collisionRight())
-	{
-		player->move("right");
-	}
-
-	if( (event->key() == Qt::Key_Up) && !player->collisionUp() )
-	{
-		player->move("up");
-	}
-
-	if( (event->key() == Qt::Key_Down) && !player->collisionDown() )
-	{
-		player->move("down");
-	}
-	if(event->key() == Qt::Key_Space)
-	{
-		this->drill();
-	}
-	if(event->key() == Qt::Key_P)
-	{
-		qDebug()<<"cierrelo papi ";
-	}
-	checkCollision();
-}*/
-
-void GameLevelView::levelFail()
-{
-	qDebug() << "lvl failed\n";
-	/*
-	holeAnimation* hole = new holeAnimation(0, 0, 100, 100, 0, 0);
-	scene->addItem(hole);*/
-}
-
-/*void GameLevelView::drill()
-{
-	checkCollision(true);
-}*/
-
-/*void GameLevelView::checkCollision(bool drill)
-{
-	const QList<QGraphicsItem*>& playerCollidingItems = player->getCollidingItems();
-	for ( QGraphicsItem* item : playerCollidingItems )
-	{
-		Tile* actual = dynamic_cast<Tile*>(item);
-		if ( (actual) && (!drill))
-		{
-			if(actual->getType()=='#'){
-				//actual->growUp();
-				//qreal growFactor =
-				levelFail();
-				//actual->setScale( growthFactor );
-			}
-		}
-		if ((actual) && (drill))
-		{
-			// Play the collision sound
-			if(actual->getType()=='O')
-				qDebug() << "lvl passed \n";
-			if(actual->getType()=='-')
-				levelFail();
-
-		}
-	}
-}*/
-
 
 void GameLevelView::prueba()
 {
 	qDebug() << "adskfn";
 }
-
-/*void GameLevelView::keyPressEvent(QKeyEvent *event)
-{
-	if(event->key()==Qt::Key_P)
-		emit goMenu();
-}*/
 
 void GameLevelView::goToMenuRequested()
 {
@@ -162,6 +86,7 @@ void GameLevelView::goToMenuRequested()
 
 void GameLevelView::displayLevel()
 {
+    Level* currentLevel=levels[chargeLevel];
 	rows = static_cast<double>(currentLevel->rows);
 	cols = static_cast<double>(currentLevel->cols);
 	imgSide = 32.0;
@@ -179,17 +104,59 @@ void GameLevelView::displayLevel()
 			qreal posY = tileHeight * static_cast<double>(row);
 			qDebug() << posX << posY;
 
-			Tile *currentTile = new Tile();
-			currentTile->setType(currentLevel->matrix[row][col]);
+            Tile *currentTile = createTile(currentLevel->matrix[row][col]);
 			//change x and y
 			currentTile->setPos( QPoint(posX, posY) );
 			//transform
 			currentTile->setScale( growthFactor );
 
-			qDebug() << "rect created";
+            qDebug() << "tile created";
 			this->scene->addItem(currentTile);
-			qDebug() << "rect added to scene\n";
-			tiles.append(currentTile);
+            qDebug() << "tile added to scene";
+            //tiles.append(currentTile);
 		}
 	}
+}
+
+void GameLevelView::removeLevel(int action)
+{
+    Level* currentLevel=levels[chargeLevel];
+    rows = static_cast<double>(currentLevel->rows);
+    cols = static_cast<double>(currentLevel->cols);
+    this->scene->removeItem(player);
+    delete player;
+    player=nullptr;
+
+    const QList<QGraphicsItem*>& allTiles = scene->items();
+    for ( QGraphicsItem* item : allTiles )
+    {
+        //Tile* actual = dynamic_cast<Tile*>(item);
+        scene->removeItem(item);
+    }
+    manageAction(action);
+}
+
+void GameLevelView::manageAction(int action){
+    if(action == 1){
+        chargeLevel++;
+        if(chargeLevel>9)
+            chargeLevel=1;
+        this->loadLevelView(chargeLevel);
+    }
+    if(action == 0)
+        this->loadLevelView(chargeLevel);
+    if(action == 2)
+        goToMenuRequested();
+}
+
+Tile* GameLevelView::createTile(QChar type)
+{
+    if(type == '-')
+        return new TileNormal(type);
+    if(type == '#')
+        return new TileBroken(type);
+    if(type == 'O')
+        return new TileSpecial(type);
+    //else
+    return new Tile(type);
 }

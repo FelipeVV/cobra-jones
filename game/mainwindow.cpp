@@ -24,17 +24,6 @@ MainWindow::~MainWindow()
 	delete gameMenuView;
 }
 
-/*void MainWindow::buildInterface()
-{
-	// Set the window title
-	this->setWindowTitle("Cobra Jones");
-
-	// For desktop, resize the main window
-  #if ! defined(Q_OS_ANDROID) && ! defined(Q_OS_IOS)
-	this->resize(512,320);
-  #endif
-}*/
-
 void MainWindow::showGameMenu()
 {
 	// Show a dialog to ask for player's nickname and game mode
@@ -53,8 +42,9 @@ void MainWindow::playGameRequested(int levelRequested)
     this->state = GameState::playing;
 
     // Create the mannager to play the level
-    this->gameLevelView = new GameLevelView(this);
-    this->gameLevelView->loadLevelView(levels[requested-1]);
+    this->gameLevelView = new GameLevelView(levels,this);
+    this->gameLevelView->loadLevelView(requested-1);
+    //this->gameLevelView->removeLevel();
     //gameLevelView->isActiveWindow();
     //gameLevelView->setFocus();*/
     // Hide the game menu widget
@@ -66,6 +56,5 @@ void MainWindow::playGameRequested(int levelRequested)
 
 void MainWindow::backToMenuRequested()
 {
-    requested++;
-    gameLevelView->loadLevelView(levels[requested]);
+    this->showGameMenu();
 }

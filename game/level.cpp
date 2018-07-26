@@ -44,13 +44,10 @@ void Level::loadMatrix(QFile &file)
     data >> rows >> cols;
 
     // Reserving memory for matrix
-	createMatrix();
-    //qDebug()<<rows<<" "<<cols;
+    createMatrix();
 
     data >> waste;
-    //std::cout << "{" << waste << "}";
     data >> waste;
-    //std::cout << "{" << waste << "}";
 
     for(int row = 0; row < rows; ++row)
     {
@@ -58,17 +55,13 @@ void Level::loadMatrix(QFile &file)
         {
             char ch = 'X';
             data >> ch;
-            std::cout << "[" << ch << "]";
+            //std::cout << "[" << ch << "]";
             matrix[row][col] = ch;
         }
         data >> waste;
-        //std::cout << "{" << waste << "}";
         data >> waste;
-        //std::cout << "{" << waste << "}";
-        std::cout << "\n";
+        //std::cout << "\n";
     }
 
     std::cout << "\n";
-
-    //qDebug()<<"Level reading complete.\n";
 }

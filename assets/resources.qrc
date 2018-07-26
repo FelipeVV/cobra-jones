@@ -19,5 +19,6 @@
         <file>level06.txt</file>
         <file>level07.txt</file>
         <file>level08.txt</file>
+        <file>tileUndefined.png</file>
     </qresource>
 </RCC>

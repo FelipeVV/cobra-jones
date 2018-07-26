@@ -11,12 +11,13 @@ class Tile : public QGraphicsPixmapItem
     QChar type;
 
   public:
+    Tile(QChar type);
     void setType(QChar ch);
     QChar getType();
     void growUp();
 
   private:
-    void setArt(QChar tileType);
+    void setArt();
 };
 
 #endif // TILE_H

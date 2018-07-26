@@ -2,10 +2,16 @@
 #include <QChar>
 
 
+Tile::Tile(QChar type)
+{
+    this->type = type;
+    this->setArt();
+}
+
 void Tile::setType(QChar ch)
 {
     this->type = ch;
-    this->setArt(ch);
+    this->setArt();
 }
 
 QChar Tile::getType()
@@ -19,8 +25,10 @@ void Tile::growUp()
     //this->setScale();
 }
 
-void Tile::setArt(QChar tileType)
+void Tile::setArt()
 {
+    this->setPixmap(QPixmap(":/assets/tileUndefined.png"));
+    /*
     if (tileType=='-')
     {
         this->setPixmap(QPixmap(":/assets/tileNormal.png"));
@@ -33,4 +41,5 @@ void Tile::setArt(QChar tileType)
     {
         this->setPixmap(QPixmap(":/assets/tileNormal.png"));
     }
+    */
 }
