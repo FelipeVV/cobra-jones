@@ -57,11 +57,8 @@ void GameLevelView::loadLevelView(int chargeLevel)
     /// A valid point is a multiple of tileWidth(or tileheight).
     double spawnX = floor((screenWidth/2)/tileWidth) * tileWidth;
     double spawnY = floor((screenHeight/2)/tileHeight) * tileHeight;
-<<<<<<< HEAD
-=======
 
     /// debug
->>>>>>> bac5d56e97f3869121ed81b435164b63b23ec48b
     qDebug() << "Width: "<< screenWidth << ". Height: " << screenHeight << NEWLINE
             << "spawnX: " << spawnX << ". spawnY: " << spawnY;
 
@@ -168,13 +165,10 @@ void GameLevelView::removeLevel(int action)
     const QList<QGraphicsItem*>& allTiles = scene->items();
     for ( QGraphicsItem* item : allTiles )
     {
-<<<<<<< HEAD
         Tile* actual = dynamic_cast<Tile*>(item);
         scene->removeItem(item);
-        delete actual;
-=======
+        //delete actual;
         scene->removeItem(item);
->>>>>>> bac5d56e97f3869121ed81b435164b63b23ec48b
     }
 
     /// After current level is deleted, do something depending on the int sent. (R)
