@@ -30,13 +30,17 @@ class Player: public QGraphicsPixmapItem
     void drill();
     void setSkin(int skin);
     void tryGoMenu();
-    void levelFail();
+
+  private:
     bool collisionLeft();
     bool collisionRight();
     bool collisionUp();
     bool collisionDown();
     void move(QString direction);
     const QList<QGraphicsItem*> getCollidingItems();
+    void checkCollision(bool drill);
+    void levelFail();
+    void levelWin();
 };
 
 #endif // PLAYER_H
