@@ -88,7 +88,11 @@ El juego está inpirado en las historias y películas de aventura, como Indiana 
 
 ![](https://i.imgur.com/9S6D5A8.jpg)
 
-* El juego se acaba si el personaje camina en frente
+* El juego se acaba si el personaje camina encima de un mosaico quebrado, o taladra un piso que no contenga un tesoro.
+
+* Si el jugador gana el nivel, Selena pasa a la proxima habitacion donde enfrentara un reto parecido.
+
+* Si el jugador pierde el nivel, el juego se reinicia. 
 
 
 ## Primer Entregable
