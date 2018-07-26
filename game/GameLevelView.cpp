@@ -42,17 +42,12 @@ GameLevelView::~GameLevelView()
 	delete scene;
 }
 
-/// Heavy explanation:
-/// This might seem confusing at first, but a lot of local variables are
-/// instaned in order tom make it more edible.
-/// This methiod, based on the size of each tile.png and the size of the screen,
-/// creates the tile objects in the proper position and size.
-/// The formulas found in this method's body were taken from a whiteboard where we drew everything we needed.
-/// For more info go to (imgur.com) or check the picture in this proyect's bin directory.
+
 void GameLevelView::loadLevelView(int chargeLevel)
 {
-    this->chargeLevel=chargeLevel;
-    // Add the level items
+    this->chargeLevel = chargeLevel;
+
+    /// Add the level items
     displayLevel();
 
 
@@ -90,14 +85,29 @@ void GameLevelView::goToMenuRequested()
 	father->backToMenuRequested();
 }
 
+/// Heavy explanation:
+/// This might seem confusing at first, but a lot of local variables are
+/// instaned in order tom make it more edible.
+/// This method, based on the size of each tile.png and the size of the screen,
+/// creates the tile objects in the proper position and size.
+/// The formulas found in this method's body were taken from a whiteboard where we drew everything we needed.
+/// For more info go to (https://imgur.com/Q0XQXR7).
 void GameLevelView::displayLevel()
 {
-    Level* currentLevel=levels[chargeLevel];
-	rows = static_cast<double>(currentLevel->rows);
+    /// Select, from player input, the level requested
+    Level* currentLevel = levels[chargeLevel];
+
+    /// Recieve rows and cols but as floating point values
+    rows = static_cast<double>(currentLevel->rows);
 	cols = static_cast<double>(currentLevel->cols);
-	imgSide = 32.0;
+
+    /// Decide tile width, taking in consideration how many must fit in the screen horizontally.
 	tileWidth = screenWidth / cols;
+
+    /// Decide tile width, taking in consideration how many must fit in the screen horizontally.
 	tileHeight = screenHeight / rows;
+
+    /// GrowthFactor is the number the dimensions of the
 	qreal growthFactor = tileWidth / imgSide;
 
 	qDebug() << rows << "\n" << cols << "\n" << tileWidth << "\n" << tileHeight << "\n";
