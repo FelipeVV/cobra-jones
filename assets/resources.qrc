@@ -14,5 +14,10 @@
         <file>level03.txt</file>
         <file>levelList.txt</file>
         <file>levels.txt</file>
+        <file>level04.txt</file>
+        <file>level05.txt</file>
+        <file>level06.txt</file>
+        <file>level07.txt</file>
+        <file>level08.txt</file>
     </qresource>
 </RCC>

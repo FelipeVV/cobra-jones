@@ -1,6 +1,7 @@
 #include <QTextStream>
 #include <QChar>
 #include <QDebug>
+#include <iostream>
 
 #include "level.h"
 
@@ -32,35 +33,42 @@ void Level::createMatrix()
 
 void Level::loadMatrix(QFile &file)
 {
-	// Variables for load from the file the chars
-	QChar waste, actual;
-	// For manage where is saved each char
-	int actualRow = 0, actualCol = 0;
-	// For manage the data in the file
+    // Create variables to read matrix data
+    char waste;
+    QChar actual;
+
+    // For managing the data in the file
 	QTextStream data(&file);
+
 	// Reading rows and cols
-	data>>rows>>cols;
-	// Reserving memory for matrix
+    data >> rows >> cols;
+
+    // Reserving memory for matrix
 	createMatrix();
-	qDebug()<<rows<<" "<<cols;
-	// Every line change is sent to the trash because it is not loaded into the matrix
-	data>>waste;data>>waste;
-	// Reading file
-	while(!data.atEnd())
-	{
-		data>>actual;
-		if(actual!='\n')// Its a valid char
-		{
-			matrix[actualRow][actualCol]=actual;// Adding char to matrix
-			actualCol++;
-			//qDebug()<<actual;
-		}
-		else // Its the end of a line, the row value increase and the cols starts from 0 again
-		{
-			actualRow++;
-			actualCol=0;
-			//qDebug()<<"cambio de linea";
-		}
-	}
-	qDebug()<<"Level reading complete.\n";
+    //qDebug()<<rows<<" "<<cols;
+
+    data >> waste;
+    //std::cout << "{" << waste << "}";
+    data >> waste;
+    //std::cout << "{" << waste << "}";
+
+    for(int row = 0; row < rows; ++row)
+    {
+        for(int col = 0; col < cols; ++col)
+        {
+            char ch = 'X';
+            data >> ch;
+            std::cout << "[" << ch << "]";
+            matrix[row][col] = ch;
+        }
+        data >> waste;
+        //std::cout << "{" << waste << "}";
+        data >> waste;
+        //std::cout << "{" << waste << "}";
+        std::cout << "\n";
+    }
+
+    std::cout << "\n";
+
+    //qDebug()<<"Level reading complete.\n";
 }

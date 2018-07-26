@@ -46,7 +46,7 @@ int Game::loadLevels()
 		input >> fileName;
 		// Adding assets directory
 		fileName = levelsDirectory + fileName;
-		qDebug() << "Found level direction: " << fileName << NEWLINE;
+        //qDebug() << "Found level direction: " << fileName << NEWLINE;
 		// Creating level
 		if(int result = createLevel(fileName)){
 			file.close();
