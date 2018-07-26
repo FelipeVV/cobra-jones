@@ -121,7 +121,3 @@ El juego está inpirado en las historias y películas de aventura, como Indiana 
 * Jose, por leer el README y entenderlo, ademas de ofrecer realimentacion. Tambien dibujó el *sketch* de Game Over.
 
 ![](https://i.imgur.com/AlIqgty.jpg)
-
-## Final Boss ##
-
-![](https://i.imgur.com/sUxd5gw.jpg)
