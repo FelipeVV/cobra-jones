@@ -26,6 +26,7 @@ class MainWindow: public QWidget
     GameMenuView* gameMenuView = nullptr;
     /// Game level view mannager
     GameLevelView* gameLevelView = nullptr;
+    int requested = 0;
 
   private:
     /// All the levels charged

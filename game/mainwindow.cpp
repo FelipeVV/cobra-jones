@@ -47,23 +47,25 @@ void MainWindow::showGameMenu()
 
 void MainWindow::playGameRequested(int levelRequested)
 {
-	qDebug() << "playing level " << levelRequested;
-	// Now the application is in playing state
-	this->state = GameState::playing;
+    requested = levelRequested;
+    qDebug() << "playing level " << levelRequested;
+    // Now the application is in playing state
+    this->state = GameState::playing;
 
-	// Create the mannager to play the level
-	this->gameLevelView = new GameLevelView(levels[levelRequested-1],this);
-	//gameLevelView->isActiveWindow();
-	/*gameLevelView->setFocus();*/
-	// Hide the game menu widget
-	this->gameMenuView->hide();
-	delete gameMenuView;
-	// Back to menu requested
+    // Create the mannager to play the level
+    this->gameLevelView = new GameLevelView(this);
+    this->gameLevelView->loadLevelView(levels[requested-1]);
+    //gameLevelView->isActiveWindow();
+    //gameLevelView->setFocus();*/
+    // Hide the game menu widget
+    this->gameMenuView->hide();
+    delete gameMenuView;
+    // Back to menu requested
 
 }
 
 void MainWindow::backToMenuRequested()
 {
-	//this->set
-	this->gameMenuView->show();
+    requested++;
+    gameLevelView->loadLevelView(levels[requested]);
 }

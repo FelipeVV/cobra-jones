@@ -13,19 +13,18 @@
 
 #define NEWLINE "\n"
 
-GameLevelView::GameLevelView(Level *currentLevel, QWidget *parent, MainWindow *father)
+GameLevelView::GameLevelView(QWidget *parent, MainWindow *father)
   : QWidget(parent)
-  , currentLevel(currentLevel)
-	{
-		// An invisible object that manages all the items
-		this->scene = new QGraphicsScene();
-		this->scene->setSceneRect(0, 0, screenWidth, screenHeight);
-		this->father = father;
-		// A visible rectangle of the scene
-		this->view = new QGraphicsView(this->scene);
-		view->setFixedSize(screenWidth, screenHeight);
-		loadLevelView();
-	}
+    {
+        // An invisible object that manages all the items
+        this->scene = new QGraphicsScene();
+        this->scene->setSceneRect(0, 0, screenWidth, screenHeight);
+        this->father = father;
+        // A visible rectangle of the scene
+        this->view = new QGraphicsView(this->scene);
+        view->setFixedSize(screenWidth, screenHeight);
+        //loadLevelView();
+    }
 
 GameLevelView::~GameLevelView()
 {
@@ -33,16 +32,18 @@ GameLevelView::~GameLevelView()
 	delete scene;
 }
 
-void GameLevelView::loadLevelView()
+void GameLevelView::loadLevelView(Level *currentLevel)
 {
-	// Add the level items
-	displayLevel();
+    this->currentLevel=currentLevel;
+    // Add the level items
+    displayLevel();
 
-	// Calculate the place in the center where the player should spawn
-	double spawnX = floor((screenWidth/2)/tileWidth) * tileWidth;
-	double spawnY = floor((screenHeight/2)/tileHeight) * tileHeight;
-	qDebug() << "Width: "<< screenWidth << ". Height: " << screenHeight << NEWLINE
-			<< "spawnX: " << spawnX << ". spawnY: " << spawnY;
+
+    // Calculate the place in the center where the player should spawn
+    double spawnX = floor((screenWidth/2)/tileWidth) * tileWidth;
+    double spawnY = floor((screenHeight/2)/tileHeight) * tileHeight;
+    qDebug() << "Width: "<< screenWidth << ". Height: " << screenHeight << NEWLINE
+            << "spawnX: " << spawnX << ". spawnY: " << spawnY;
 
 	//add the player caracter
 	player = new Player(tileWidth, tileHeight, spawnX, spawnY,this);

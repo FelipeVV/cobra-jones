@@ -6,11 +6,13 @@
 #include <QList>
 #include "GameLevelView.h"
 #include <QKeyEvent>
+//#include <QWidget>
 
 class QSoundEffect;
 
 class Player: public QGraphicsPixmapItem
 {
+    //Q_OBJECT
     friend class GameLevelView;
   protected:
     GameLevelView* fatha;
@@ -21,7 +23,7 @@ class Player: public QGraphicsPixmapItem
 
   public:
     ///constructor
-    Player(double tileWidth, double tileHeight, double spawnX, double spawnY, GameLevelView *fatha);
+    Player(double tileWidth, double tileHeight, double spawnX, double spawnY,GameLevelView *fatha);
     ~Player();
     /// ???
     void keyPressEvent(QKeyEvent* event);

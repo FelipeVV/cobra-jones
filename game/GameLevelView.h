@@ -42,20 +42,20 @@ class GameLevelView: public QWidget
 	QVector<Tile*> tiles;
 
   private:
-	void loadLevelView();
-	void displayLevel();
-	//void keyPressEvent(QKeyEvent *event);
-	//void checkCollision(bool drill = false);
-	void levelFail();
-	void drill();
+    void loadLevelView(Level* currentLevel);
+    void displayLevel();
+    //void keyPressEvent(QKeyEvent *event);
+    //void checkCollision(bool drill = false);
+    void levelFail();
+    void drill();
 
   public:
-	/// Constructor
-	explicit GameLevelView(Level* currentLevel, QWidget *parent = nullptr, MainWindow* father =  nullptr);
-	/// Destructor
-	~GameLevelView();
-	void prueba();
-	void goToMenuRequested();
+    /// Constructor
+    explicit GameLevelView(QWidget *parent = nullptr, MainWindow* father =  nullptr);
+    /// Destructor
+    ~GameLevelView();
+    void prueba();
+    void goToMenuRequested();
 
   signals:
 	/// Signal for communicating to mainwindow
