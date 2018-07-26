@@ -8,6 +8,7 @@ class Level;
 class GameLevelView;
 class Player;
 
+/// States of the game
 enum class GameState
 {
     unknown,
@@ -26,28 +27,34 @@ class MainWindow: public QWidget
     GameMenuView* gameMenuView = nullptr;
     /// Game level view mannager
     GameLevelView* gameLevelView = nullptr;
+    /// Variable holding the level that the user may request
     int requested = 0;
 
   private:
-    /// All the levels charged
+    /// All the levels charged. Recieves reference from class game, that already loaded it.
     const QVector<Level*>& levels;
-    /// State of the game
+    /// State of the game. Starts at unknown
     GameState state = GameState::unknown;
 
   public:
-    /// Cosntructor
+    /// Constructor
     explicit MainWindow(const QVector<Level*>& levels,QWidget* parent = nullptr);
     /// Destructor
     virtual ~MainWindow();
-    /// Slot when user want go to main menu
+    /// Slot when user wants go to main menu
     void backToMenuRequested();
 
   protected:
+    /// Method for showing mainMenu view.
     void showGameMenu();
+    /// Method to create levelView with desired level data.
+    /// Example:
+    /// Load level, with data from level01(rows, cols, matrix).
     void loadLevelView(int levelToCharge);
 
   private slots:
-    /// Slot for the signal when the player press a button to play in menu
+    /// Slot for the signal when the player press a button to play a level.
+    /// This happens in the menu view.
     void playGameRequested(int levelRequested);
 };
 

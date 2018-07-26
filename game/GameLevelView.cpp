@@ -132,6 +132,7 @@ void GameLevelView::removeLevel(int action)
     {
         //Tile* actual = dynamic_cast<Tile*>(item);
         scene->removeItem(item);
+        //delete item;
     }
     manageAction(action);
 }

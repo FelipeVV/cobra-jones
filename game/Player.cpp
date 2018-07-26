@@ -127,14 +127,15 @@ void Player::checkCollision(bool drill)
     for ( QGraphicsItem* item : playerCollidingItems )
     {
         Tile* actual = dynamic_cast<Tile*>(item);
-        if ( (actual) && (!drill) && (y() == actual->y()))
+        /*
+        if ( (!drill) && areInSameTilePosition(x(), y(), actual) )
         {
             if(actual->getType()=='#'){
                 qDebug()<<"lvl failed \n";
                 levelFail();
             }
         }
-        if ((actual) && (drill) && (y() == actual->y()))
+        if ( (drill) && areInSameTilePosition(x(), y(), actual) )
         {
             // Play the collision sound
             if(actual->getType()=='O'){
@@ -146,17 +147,60 @@ void Player::checkCollision(bool drill)
                 levelFail();
             }
         }
+        */
+
+        // First, make sure the tile and player are in the same 'tile space'.
+        // This is an extra step besides collision because of resizing irregularities.
+        if(areInSameTilePosition(x(), y(), actual))
+        {
+            if(drill)
+            {
+                if(actual->getType()=='O')
+                {
+                    levelWin();
+                }
+                if(actual->getType()=='-')
+                {
+                    levelFail();
+                }
+            }
+            else //!drill
+            {
+                if(actual->getType()=='#')
+                {
+                    levelFail();
+                }
+            }
+        }
     }
+}
+
+bool Player::areInSameTilePosition(double x1, double y1, Tile* actual)
+{
+    double x2 = actual->x();
+    double y2 = actual->y();
+
+    qDebug() << "[" << actual->getType() << "]: " << x1 << "," << y1 << "~" << x2 << "," << y2 << "?";
+    if((floor(x1) == floor(x2))&&(floor(y1) == floor(y2)))
+    {
+        qDebug() << "Collision true";
+        return true;
+    }
+    //else
+    qDebug() << "Collision false";
+    return false;
 }
 
 void Player::levelFail()
 {
+    qDebug() << "lvl failed \n";
     //setPixmap(QPixmap(":/assets/floor_dark.png"));
     fatha->removeLevel(0);
 }
 
 void Player::levelWin()
 {
+    qDebug() << "lvl passed \n";
     //setPixmap(QPixmap(":/assets/avatar.png"));
     fatha->removeLevel(1);
 }

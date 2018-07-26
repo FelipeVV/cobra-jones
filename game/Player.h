@@ -41,6 +41,7 @@ class Player: public QGraphicsPixmapItem
     void checkCollision(bool drill);
     void levelFail();
     void levelWin();
+    bool areInSameTilePosition(double x1, double y1, Tile *actual);
 };
 
 #endif // PLAYER_H

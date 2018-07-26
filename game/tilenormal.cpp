@@ -9,5 +9,5 @@ TileNormal::TileNormal(QChar type)
 
 void TileNormal::setArt()
 {
-    this->setPixmap(QPixmap(":/assets/tileUndefined.png"));
+    this->setPixmap(QPixmap(":/assets/tileNormal.png"));
 }
