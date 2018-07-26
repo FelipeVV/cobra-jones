@@ -2,6 +2,7 @@
 #include <QKeyEvent>
 #include <QSoundEffect>
 #include <QApplication>
+#include <QTimer>
 #include "tile.h"
 
 #include "Player.h"
@@ -109,4 +110,47 @@ void Player::keyPressEvent(QKeyEvent *event)
 	{
 		fatha->goToMenuRequested();
 	}
+    if( (event->key() == Qt::Key_Space))
+    {
+        checkCollision(true);
+    }
+    checkCollision(false);
+}
+
+void Player::checkCollision(bool drill)
+{
+    const QList<QGraphicsItem*>& playerCollidingItems = getCollidingItems();
+    for ( QGraphicsItem* item : playerCollidingItems )
+    {
+        Tile* actual = dynamic_cast<Tile*>(item);
+        if ( (actual) && (!drill))
+        {
+            if(actual->getType()=='#'){
+                qDebug()<<"lvl failed \n";
+                levelFail();
+            }
+        }
+        if ((actual) && (drill))
+        {
+            // Play the collision sound
+            if(actual->getType()=='O'){
+                qDebug() << "lvl passed \n";
+                levelWin();
+            }
+            if(actual->getType()=='-'){
+                qDebug() << "lvl failed \n";
+                levelFail();
+            }
+        }
+    }
+}
+
+void Player::levelFail()
+{
+    setPixmap(QPixmap(":/assets/floor_dark.png"));
+}
+
+void Player::levelWin()
+{
+    setPixmap(QPixmap(":/assets/avatar.png"));
 }
