@@ -2,10 +2,10 @@
 #include <QKeyEvent>
 #include <QSoundEffect>
 #include <QApplication>
-#include <tile.h>
+#include <QString>
+#include <Tile.h>
 
 #include "Player.h"
-#include "holeanimation.h"
 
 Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY)
 {
@@ -24,59 +24,7 @@ Player::Player(double tileWidth, double tileHeight, double spawnX, double spawnY
 }
 
 
-void Player::keyPressEvent(QKeyEvent *event)
-{
 
-    // React to input
-    if((event->key() == Qt::Key_Left) && !collisionLeft() )
-    {
-        setPos(x() - xWalkDistance, y());
-        //walkingSound->play();
-
-    }
-
-    if( (event->key() == Qt::Key_Right) && !collisionRight())
-    {
-        setPos(x() + xWalkDistance, y());
-    }
-
-    if( (event->key() == Qt::Key_Up) && !collisionUp() )
-    {
-        setPos(x(), y() - yWalkDistance);
-    }
-
-    if( (event->key() == Qt::Key_Down) && !collisionDown() )
-    {
-        setPos(x(), y() + yWalkDistance);
-    }
-    if(event->key() == Qt::Key_Space)
-    {
-        this->drill();
-    }
-    if(event->key() == Qt::Key_P)
-    {
-        qDebug()<<"cierrelo papi ";
-    }
-    const QList<QGraphicsItem*>& items = collidingItems();
-    for ( QGraphicsItem* item : items )
-    {
-        if (Tile* actual =dynamic_cast<Tile*>(item) )
-        {
-            if(actual->getType()=='#'){
-                //actual->growUp();
-                //qreal growFactor =
-                levelFail();
-                //actual->setScale( growthFactor );*/
-            }
-        }
-    }
-}
-
-void Player::levelFail()
-{
-    qDebug() << "lvl failed\n";
-    holeAnimation* hole = new holeAnimation(0, 0, 100, 100, 0, 0);
-}
 
 void Player::setSkin(int skin)
 {
@@ -115,20 +63,20 @@ bool Player::collisionDown()
     return false;
 }
 
-void Player::drill(){
-    // Traverse all graphic items that are colliding with this
-    const QList<QGraphicsItem*>& items = collidingItems();
-    for ( QGraphicsItem* item : items )
-    {
-        // If a graphic item is an
-        if (Tile* actual =dynamic_cast<Tile*>(item) )
-        {
-            // Play the collision sound
-            if(actual->getType()=='O')
-                qDebug() << "lvl passed \n";
-            if(actual->getType()=='-')
-                levelFail();
+void Player::move(QString direction)
+{
+    if(direction == "left")
+        setPos(x() - xWalkDistance, y());
+    if(direction == "right")
+        setPos(x() + xWalkDistance, y());
+    if(direction == "up")
+        setPos(x(), y() - yWalkDistance);
+    if(direction == "down")
+        setPos(x(), y() + yWalkDistance);
+}
 
-        }
-    }
+const QList<QGraphicsItem *> Player::getCollidingItems()
+{
+    const QList<QGraphicsItem*>& items = collidingItems();
+    return items;
 }

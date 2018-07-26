@@ -41,6 +41,10 @@ class GameLevelView: public QWidget
   private:
     void loadLevelView();
     void displayLevel();
+    void keyPressEvent(QKeyEvent *event);
+    void checkCollision(bool drill = false);
+    void levelFail();
+    void drill();
 
   public:
     /// Constructor

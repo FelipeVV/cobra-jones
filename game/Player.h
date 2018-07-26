@@ -22,12 +22,12 @@ class Player: public QGraphicsPixmapItem
     void setSkin(int skin);
     void tryGoMenu();
     void levelFail();
-
-  protected:
     bool collisionLeft();
     bool collisionRight();
     bool collisionUp();
     bool collisionDown();
+    void move(QString direction);
+    const QList<QGraphicsItem*> getCollidingItems();
 };
 
 #endif // PLAYER_H
